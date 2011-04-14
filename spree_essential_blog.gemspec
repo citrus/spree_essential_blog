@@ -15,7 +15,16 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   
+  s.require_paths = ["lib"]
+  
   s.add_dependency('spree_essentials', '>= 0.1.0')
 
-  s.require_paths = ["lib"]
+  # Development
+	s.add_development_dependency('shoulda', '>= 2.11.3')
+	s.add_development_dependency('factory_girl', '>= 2.0.0.beta2')
+	s.add_development_dependency('capybara', '>= 0.4.1')
+	s.add_development_dependency('selenium-webdriver', '>= 0.1.3')
+  s.add_development_dependency('sqlite3')
+  s.add_development_dependency('faker')
+  
 end

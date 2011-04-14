@@ -1,3 +1,7 @@
+require 'spree_essentials'
+#require 'sqlite3' unless Rails.env == 'production'
+
+
 module SpreeEssentialBlog
 
   def self.tab
