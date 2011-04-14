@@ -6,7 +6,7 @@
 
 <%= form.field_container :posted_at do %>
   <%= form.label :posted_at, t("post.posted_at") %><br />
-  <%= form.text_field :posted_at, :class => 'text' %><br />
+  <%= form.text_field :posted_at, :class => 'text', :value => (@post.posted_at.to_s(:long) unless @post.new_record?) %><br />
   <%= error_message_on :post, :posted_at %>
 <% end %>
 

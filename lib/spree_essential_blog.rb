@@ -1,4 +1,12 @@
 module SpreeEssentialBlog
+
+  def self.tab
+    [:posts, :post_images, :post_products ]
+  end
+  
+  def self.sub_tab
+    [:posts, { :label => 'admin.subnav.posts', :match_path => '/posts' }]
+  end
   
   class Engine < Rails::Engine
 
@@ -9,7 +17,6 @@ module SpreeEssentialBlog
     end
         
     def self.activate
-      
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator.rb")) do |c|
         Rails.env.production? ? require(c) : load(c)
       end
@@ -19,11 +26,7 @@ module SpreeEssentialBlog
     config.to_prepare &method(:activate).to_proc
     
   end
-  
-  #class CustomHooks < Spree::ThemeSupport::HookListener
-  #  
-  #  insert_after :admin_tabs,  'admin/shared/contents_tab'
-  #
-  #end
-  
+    
 end
+
+SpreeEssentials.register SpreeEssentialBlog

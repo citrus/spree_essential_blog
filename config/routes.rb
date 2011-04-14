@@ -17,8 +17,7 @@ Rails.application.routes.draw do
     end    
   end
   
-  namespace :admin do
-    
+  namespace :admin do    
     scope(:module => "Blog") do
       resources :posts do 
         resources :images,   :controller => "post_images" do
@@ -28,8 +27,7 @@ Rails.application.routes.draw do
         end
         resources :products, :controller => "post_products"
       end
-    end
-    
+    end    
   end
   
 end

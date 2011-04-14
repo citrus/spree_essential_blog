@@ -1,0 +1,37 @@
+en: 
+  post:
+    title: Title
+    posted_at: Posted At
+    body: Body
+    live: Published
+    tags: Tags
+  blog:
+    home:
+      title: Recent Posts
+    archive: Blog Archive
+    posts:
+      index:
+        blog: Blog
+        rss: Subscribe via RSS
+      archive:
+        go_to_store: "Shop the Store"
+        back_to_posts: "Back to the blog"    
+      preview: 
+        read_more: Read More        
+      sidebar: 
+        recent_posts: Recent Posts
+        archives: Archive
+        view_archive: View Full Archive
+        tags: Tags        
+  admin:
+    blog:
+      post_products:
+        index:
+          add_related_product: Add Related Products      
+    subnav:
+      posts: Blog Posts      
+    shared:
+      post_tabs:
+        editing_post: Editing Post
+        post_details: Post Details
+        related_products: Related Products
