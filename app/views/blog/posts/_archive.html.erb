@@ -12,7 +12,7 @@
                 <%= link_to day, post_date_path(year, month, day) %>
               </span>
               <ul class="posts">
-                <% posts_by_day.each_with_index do |post,index| %>
+                <% posts_by_day.each_with_index do |post, index| %>
                   <li><%= link_to h(post.title), post_seo_path(post) %></li>
                 <% end %>
               </ul>
