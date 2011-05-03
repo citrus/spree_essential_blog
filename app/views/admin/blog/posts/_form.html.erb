@@ -1,6 +1,6 @@
 <%= form.field_container :title do %>
   <%= form.label :title, t("post.title") %><br />
-  <%= form.text_field :title, :class => 'title'  %>
+  <%= form.text_field :title, :class => 'title' %>
   <%= error_message_on :post, :title%>
 <% end %>
 
@@ -13,7 +13,7 @@
 <%= form.field_container :body do %>
   <%= form.label :body, t("post.body") %><%= markdown_helper %><br />
   <%= form.text_area :body  %>
-  <%= error_message_on :post, :body%>
+  <%= error_message_on :post, :body %>
 <% end %>
 
 <%= form.field_container :tag_list do %>

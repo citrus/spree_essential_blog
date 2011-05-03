@@ -1,8 +1,8 @@
 require 'generators/essentials_base'
 
-module SpreeEssentialBlog
+module SpreeEssentials
   module Generators
-    class InstallGenerator < SpreeEssentials::Generators::EssentialsBase
+    class BlogGenerator < SpreeEssentials::Generators::EssentialsBase
       
       desc "Installs required migrations for spree_essentials_blog"
       source_root File.expand_path("../../templates/db/migrate", __FILE__)

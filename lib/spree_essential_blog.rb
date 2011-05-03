@@ -33,4 +33,4 @@ module SpreeEssentialBlog
     
 end
 
-SpreeEssentials.register SpreeEssentialBlog
+SpreeEssentials.register :blog, SpreeEssentialBlog
