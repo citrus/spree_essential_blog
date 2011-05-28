@@ -1,7 +1,6 @@
 require 'spree_essentials'
 require 'acts-as-taggable-on'
-#require 'sqlite3' unless Rails.env == 'production'
-
+require 'spree_essential_blog/custom_hooks'
 
 module SpreeEssentialBlog
 
