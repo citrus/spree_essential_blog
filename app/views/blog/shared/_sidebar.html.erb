@@ -1,9 +1,18 @@
 <div class="post-sidebar">
 
   <h3><%= t('.recent_posts') %></h3>  
-  <%= render 'archive', :posts => @archive_posts %>
+  <%= render 'blog/shared/archive', :posts => @archive_posts %>
   
   <p class="more"><%= link_to t('.view_archive'), archive_posts_path %></p>
+  
+  <div class="categories">
+    <h3><%= t('.categories') %></h3>
+    <ul>
+      <% @post_categories.each do |category| %>
+        <li><%= link_to category.name, post_category_path(category.permalink) %></li>
+      <% end %>
+    </ul>
+  </div>
   
   <div class="tag-cloud">
     <h3><%= t('.tags') %></h3>

@@ -8,13 +8,16 @@ Rails.application.routes.draw do
     ) do 
       get '/blog/:year(/:month)(/:day)' => 'posts#index', :as => :post_date
       get '/blog/:year/:month/:day/:id' => 'posts#show',  :as => :full_post
+      get '/blog/category/:id' => 'post_categories#show', :as => :post_category
     end
     
     get '/blog/search/:query', :to => 'posts#search', :as => :search_posts, :query => /.*/
         
     resources :posts, :path => 'blog' do
       get :archive, :on => :collection
-    end    
+    end 
+    
+    # resources :post_categories, :path => 'category'
   end
   
   namespace :admin do    
@@ -26,6 +29,7 @@ Rails.application.routes.draw do
           end
         end
         resources :products, :controller => "post_products"
+        resources :categories, :controller => "post_categories"
       end
     end    
   end

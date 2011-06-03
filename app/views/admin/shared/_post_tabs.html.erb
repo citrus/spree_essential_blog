@@ -17,7 +17,10 @@
       </li>     
       <li<%= ' class="active"'.html_safe if current == "Related Products" %>>
         <%= link_to t(".related_products"), admin_post_products_url(@post) %>
-      </li>    
+      </li> 
+      <li<%= ' class="active"'.html_safe if current == "Categories" %>>
+        <%= link_to t(".post_categories"), admin_post_categories_url(@post) %>
+      </li>   
     <% end %>
   </ul>
   <br clear="clear" />

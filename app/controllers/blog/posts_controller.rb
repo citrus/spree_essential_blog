@@ -48,6 +48,7 @@ class Blog::PostsController < Spree::BaseController
   
   def get_sidebar    
     @archive_posts = Post.live.limit(10)
+    @post_categories = PostCategory.all
     get_tags
   end
   
