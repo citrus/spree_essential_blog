@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   scope(:module => "Blog") do
+    
     constraints(
       :year  => /\d{4}/,
       :month => /\d{1,2}/,
@@ -14,11 +15,13 @@ Rails.application.routes.draw do
         
     resources :posts, :path => 'blog' do
       get :archive, :on => :collection
-    end    
+    end  
+      
   end
   
   namespace :admin do    
     scope(:module => "Blog") do
+    
       resources :posts do 
         resources :images,   :controller => "post_images" do
           collection do
@@ -27,7 +30,7 @@ Rails.application.routes.draw do
         end
         resources :products, :controller => "post_products"
       end
+      
     end    
-  end
-  
+  end  
 end
