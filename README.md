@@ -17,7 +17,8 @@ Change Log
 Contributors
 ------------
 
-So far it's just me; Spencer Steffen. 
+Spencer Steffen - github.com/citrus
+detierno - github.com/detierno
 
 If you'd like to help out feel free to fork and send me pull requests!
 

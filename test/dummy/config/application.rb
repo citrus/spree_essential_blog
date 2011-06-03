@@ -7,7 +7,7 @@ require "action_view/railtie"
 require "action_mailer/railtie"
 
 Bundler.require
-#require "spree_mail"
+require "spree_essential_blog"
 
 module Dummy
   class Application < Rails::Application

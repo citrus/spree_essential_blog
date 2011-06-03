@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110317074600) do
+ActiveRecord::Schema.define(:version => 20110603021201) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20110317074600) do
     t.integer  "attachment_width"
     t.integer  "attachment_height"
     t.text     "alt"
+    t.integer  "attachment_file_size"
   end
 
   add_index "assets", ["viewable_id"], :name => "index_assets_on_viewable_id"
@@ -80,21 +81,6 @@ ActiveRecord::Schema.define(:version => 20110317074600) do
   end
 
   add_index "configurations", ["name", "type"], :name => "index_configurations_on_name_and_type"
-
-  create_table "contents", :force => true do |t|
-    t.integer  "page_id"
-    t.string   "title"
-    t.text     "body"
-    t.string   "link"
-    t.string   "link_text"
-    t.integer  "position",                :default => 999
-    t.string   "attachment_file_name"
-    t.string   "attachment_content_type"
-    t.integer  "attachment_file_size"
-    t.datetime "attachment_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "countries", :force => true do |t|
     t.string  "iso_name"
@@ -191,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20110317074600) do
     t.string   "presentation", :limit => 100
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",                    :default => 0, :null => false
   end
 
   create_table "option_types_prototypes", :id => false, :force => true do |t|
@@ -237,20 +224,6 @@ ActiveRecord::Schema.define(:version => 20110317074600) do
   end
 
   add_index "orders", ["number"], :name => "index_orders_on_number"
-
-  create_table "pages", :force => true do |t|
-    t.string   "title"
-    t.string   "nav_title"
-    t.string   "path"
-    t.string   "meta_title"
-    t.string   "meta_description"
-    t.string   "meta_keywords"
-    t.integer  "position",         :default => 999
-    t.boolean  "accessible",       :default => true
-    t.boolean  "visible",          :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "payment_methods", :force => true do |t|
     t.string   "type"
@@ -454,6 +427,7 @@ ActiveRecord::Schema.define(:version => 20110317074600) do
     t.datetime "updated_at"
     t.string   "previous_state"
     t.string   "stateful_type"
+    t.string   "next_state"
   end
 
   create_table "states", :force => true do |t|
@@ -580,6 +554,7 @@ ActiveRecord::Schema.define(:version => 20110317074600) do
     t.boolean  "is_master",                                   :default => false
     t.integer  "count_on_hand",                               :default => 0,     :null => false
     t.decimal  "cost_price",    :precision => 8, :scale => 2
+    t.integer  "position"
   end
 
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"
