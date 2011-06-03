@@ -14,7 +14,9 @@ Rails.application.routes.draw do
         
     resources :posts, :path => 'blog' do
       get :archive, :on => :collection
-    end    
+    end 
+    
+    resources :post_categories, :path => 'category'
   end
   
   namespace :admin do    
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
           end
         end
         resources :products, :controller => "post_products"
+        resources :categories, :controller => "post_categories"
       end
     end    
   end

@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   
   acts_as_taggable
   
+  has_and_belongs_to_many :post_categories
   has_many :post_products, :dependent => :destroy
   has_many :products, :through => :post_products
   

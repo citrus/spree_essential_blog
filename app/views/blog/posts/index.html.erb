@@ -1,5 +1,5 @@
 <div class="posts">
-  <%= render :partial => 'preview', :collection => @posts, :as => :post %>
+  <%= render :partial => 'blog/shared/preview', :collection => @posts, :as => :post %>
 
   <br class="clear"/>
 
@@ -9,5 +9,5 @@
 </div>  
 
 <% content_for :sidebar do %>
-  <%= render :partial => 'sidebar' %>
+  <%= render :partial => 'blog/shared/sidebar' %>
 <% end %>
