@@ -1,23 +1,21 @@
 <%= render :partial => 'admin/shared/post_tabs', :locals => {:current => "Categories"} %>
 
 <div id="categories-box">
-  <fieldset>
-    <legend><%= t('.manage_categories') %></legend>
-    <% form_for([:admin, @post]) do |f| %>
-      <table>
-      <% @post_categories.each do |category| -%>
-        <tr>
-          <td><%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category) -%> <%= category.name -%></td>
-          <td><%= link_to_with_icon('edit', t("edit"), edit_admin_post_category_url(@post, category.id)) %></td>
-          <td><%= link_to_delete category, {:url => admin_post_category_url(@post, category.id)} %></td>
-        </tr>
-      <% end -%>
-      </table>
-    
-    <%= button t("update") %>
-    <% end %>
-    
-  </fieldset>
+  <%= form_for([:admin, @post]) do |f| %>
+    <fieldset>
+      <legend><%= t('.manage_categories') %></legend>
+        <table>
+        <% @post_categories.each do |category| -%>
+          <tr>
+            <td><%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category) -%> <%= category.name -%></td>
+            <td><%= link_to_with_icon('edit', t("edit"), edit_admin_post_category_url(@post, category.id)) %></td>
+            <td><%= link_to_delete category, {:url => admin_post_category_url(@post, category.id)} %></td>
+          </tr>
+        <% end -%>
+        </table>
+      <%= button t("update") %>
+    </fieldset>
+  <% end %>
   
   <%= link_to icon('add') + ' ' + t("new_category"), new_admin_post_category_url(@post) %>
   
