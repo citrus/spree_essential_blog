@@ -1,7 +1,7 @@
 Spree Essential Blog
 ====================
 
-A complete blogging solution for [Spree Commerce](http://spreecommerce.com).
+A complete blogging solution for [Spree Commerce](http://spreecommerce.com) with archives, categories, tags and related products. 
 
 This extension relies on [spree_essentials](https://github.com/citrus/spree_essentials) for it's editor, uploads admin and a tab to live under in the admin.
 
@@ -97,7 +97,7 @@ Change Log
 ----------
 
 
-**2011/6/6**
+**0.1.0 2011/6/6**
 
 * added a few more tests
 * pulled GH1 (Thanks [detierno](https://github.com/detierno)!)
