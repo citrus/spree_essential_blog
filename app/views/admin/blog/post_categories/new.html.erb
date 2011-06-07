@@ -1,3 +1,5 @@
+<%= render :partial => 'admin/shared/post_tabs', :locals => {:current => "Categories"} %>
+
 <h3><%= t("new_category") %></h3>
 
 <%= form_for(@post_category, :url => admin_post_categories_path(@post)) do |form| %>
