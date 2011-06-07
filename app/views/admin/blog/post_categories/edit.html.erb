@@ -1,0 +1,8 @@
+<h3><%= t("edit_category") %></h3>
+
+<%= form_for(@post_category, :url => admin_post_category_path(@post)) do |form| %>
+  <%= render "form", :form => form %>
+  <p class="form-buttons">
+    <%= button t("update") %>
+  </p>
+<% end %>
