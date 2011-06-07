@@ -1,6 +1,9 @@
 <div class="posts">
-  <%= render :partial => 'preview', :collection => @posts, :as => :post %>
-
+  <% if @posts.blank? %>
+    <h1><%= t('blog.no_posts') %></h1>
+  <% else %>
+    <%= render :partial => 'preview', :collection => @posts, :as => :post %>
+  <% end %>
   <br class="clear"/>
 
   <%= link_to(image_tag('blog/rss.png', :alt => t('.rss')) + t('.rss'), posts_path(:format => 'rss'), :id => "posts-rss") %>

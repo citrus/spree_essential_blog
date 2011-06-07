@@ -9,6 +9,7 @@ en:
     home:
       title: Recent Posts
     archive: Blog Archive
+    no_posts: No posts found!
     posts:
       index:
         blog: Blog

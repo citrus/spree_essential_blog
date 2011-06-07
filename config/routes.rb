@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       :month => /\d{1,2}/,
       :day   => /\d{1,2}/
     ) do 
-      get '/blog/:year(/:month)(/:day)' => 'posts#index', :as => :post_date
+      get '/blog/:year(/:month(/:day))' => 'posts#index', :as => :post_date
       get '/blog/:year/:month/:day/:id' => 'posts#show',  :as => :full_post
     end
     
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         
     resources :posts, :path => 'blog' do
       get :archive, :on => :collection
-    end  
+    end
       
   end
   

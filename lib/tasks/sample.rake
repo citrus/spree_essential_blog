@@ -11,7 +11,7 @@ namespace :db do
       
       product_ids = Product.select('id').all.collect(&:id) rescue []
       
-      50.times { |i|
+      25.times { |i|
       
         post = Post.create(
           :title     => Faker::Lorem.sentence,

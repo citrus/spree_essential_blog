@@ -39,7 +39,7 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   should "get the archive" do
     visit archive_posts_path
     assert has_link?("Capy post 1")
-    assert has_link?("Shop the store")
+    assert has_link?("Shop the Store")
   end
   
   
