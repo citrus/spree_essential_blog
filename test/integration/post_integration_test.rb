@@ -9,46 +9,52 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   
   def setup
     Post.destroy_all
-    11.times{ |i| Factory.create(:post, :title => "Capy post #{i}", :posted_at => Time.now - i.days) }
   end
   
-  
-  should "get the blog page" do
-    visit posts_path
-    # first post
-    assert has_link?("Capy post 1")
-    # last post
-    assert has_link?("Capy post 9")
-    # archive link
-    assert has_link?("View Full Archive")
-    # tag link
-    assert has_link?("peanut butter")
-    # page two
-    assert has_link?("2")
-    assert has_link?("Next →")
-  end
-  
-  should "get a blog post" do
-    @post = Post.first
-    visit full_post_path(@post.year, @post.month, @post.day, @post)
-    within('h1') do
-      assert has_content?(@post.title)
+  context "with some posts" do
+    
+    setup do
+      11.times{ |i| Factory.create(:post, :title => "Capy post #{i}", :posted_at => Time.now - i.days) }
+      assert_equal 11, Post.count
     end
+    
+    should "get the blog page" do
+      visit posts_path
+      # first post
+      assert has_link?("Capy post 1")
+      # last post
+      assert has_link?("Capy post 9")
+      # archive link
+      assert has_link?("View Full Archive")
+      # tag link
+      assert has_link?("peanut butter")
+      # page two
+      assert has_link?("2")
+      assert has_link?("Next →")
+    end
+    
+    should "get a blog post" do
+      @post = Post.first
+      visit full_post_path(@post.year, @post.month, @post.day, @post)
+      within('h1') do
+        assert has_content?(@post.title)
+      end
+    end
+    
+    should "get the archive" do
+      visit archive_posts_path
+      assert has_link?("Capy post 1")
+      assert has_link?("Shop the Store")
+    end
+    
   end
   
-  should "get the archive" do
-    visit archive_posts_path
-    assert has_link?("Capy post 1")
-    assert has_link?("Shop the Store")
-  end
   
-  
-  
-  
-  context "with an existing post" do
+  context "with a specific post" do
   
     setup do
       @post = Factory.create(:post, :posted_at => DateTime.parse("2011/2/17"), :tag_list => "gruyere, emmentaler, fondue")
+      assert_equal 1, Post.count
     end
   
     should "find by seo path" do
@@ -78,50 +84,113 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   
   context "unpublished posts" do
   
+    def assert_no_post(post)
+      within "#sidebar .post-archive" do
+        assert !has_link?(post.title)        
+      end
+      within "#content .posts" do
+        assert !has_link?(post.title)        
+      end
+      within ".tag-cloud ul.tags" do
+        post.tags.each do |tag|
+          assert !has_link?(tag.name)
+        end
+      end
+    end
+  
     setup do
-      Post.destroy_all
-      @tags = "totally, not published"
-      @post = Factory.create(:post, :title => "Unpublished Post", :tag_list => @tags, :live => false)
+      @tags = %(totally, not published).split(", ")
+      @post = Factory.create(:post, :title => "Unpublished Post", :tag_list => @tags.join(", "), :live => false)
+      assert_equal 1, Post.count
     end
     
     should "not include post in index" do
       visit posts_path
-      within "#content .posts" do
-        assert !has_link?("Unpublished Post")        
-      end
-      within ".tag-cloud ul.tags" do
-        assert !has_link?("totally")
-        assert !has_link?("not published")
+      assert_no_post(@post)
+    end
+    
+    should "not include post in day specific index" do
+      visit post_date_path(:year => @post.year, :month => @post.month, :day => @post.day)
+      assert_no_post(@post)
+    end    
+    
+    should "not include post in month specific index" do
+      visit post_date_path(:year => @post.year, :month => @post.month)
+      assert_no_post(@post)
+    end
+    
+    should "not include post in year specific index" do
+      visit post_date_path(:year => @post.year)
+      assert_no_post(@post)
+    end
+    
+    should "not include post in search results" do
+      @tags.each do |tag|
+        visit search_posts_path(tag)
+        assert_no_post(@post)
       end
     end
     
-    # [todo] make these capy tests
+  end
+  
+  
+  context "published posts" do
+  
+    def assert_has_post(post)
+      within "#sidebar .post-archive" do
+        assert has_link?(post.title)        
+      end
+      within "#content .posts" do
+        assert has_link?(post.title)        
+      end
+      within ".tag-cloud ul.tags" do
+        post.tags.each do |tag|
+          assert has_link?(tag.name)
+        end
+      end
+    end
+  
+    setup do
+      @tags = %(totally, published).split(", ")
+      @post = Factory.create(:post, :title => "Published Post", :tag_list => @tags.join(", "), :live => true)
+      assert_equal 1, Post.count
+    end
     
-    #should "not include post in day specific index" do
-    #  get :index, :year => @post.year, :month => @post.month, :day => @post.day
-    #  assert !assigns(:posts).include?(@post)
-    #end
-    #
-    #should "not include post in month specific index" do
-    #  get :index, :year => @post.year, :month => @post.month
-    #  assert !assigns(:posts).include?(@post)
-    #end
-    #
-    #should "not include post in year specific index" do
-    #  get :index, :year => @post.year
-    #  assert !assigns(:posts).include?(@post)
-    #end
-    #
-    #should "not include post in search results" do
-    #  get :search, :query => @tags
-    #  assert !assigns(:posts).include?(@post)
-    #end
+    should "not include post in index" do
+      visit posts_path
+      assert_has_post(@post)
+    end
+    
+    should "not include post in day specific index" do
+      visit post_date_path(:year => @post.year, :month => @post.month, :day => @post.day)
+      assert_has_post(@post)
+    end    
+    
+    should "not include post in month specific index" do
+      visit post_date_path(:year => @post.year, :month => @post.month)
+      assert_has_post(@post)
+    end
+    
+    should "not include post in year specific index" do
+      visit post_date_path(:year => @post.year)
+      assert_has_post(@post)
+    end
+    
+    should "not include post in search results" do
+      @tags.each do |tag|
+        visit search_posts_path(tag)
+        assert_has_post(@post)
+      end
+    end
     
   end
+    
+end
+  
   
   # [todo] make these capy tests
   #
-  #context "published posts" do
+  #context "published, dated posts" do
   #
   #  setup do
   #    @date = DateTime.parse("2011/3/20 16:00")
@@ -162,6 +231,3 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   #  end
   #
   #end
-
-  
-end

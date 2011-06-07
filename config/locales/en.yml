@@ -1,5 +1,6 @@
 en: 
   post:
+    model_name: Post
     title: Title
     posted_at: Posted At
     body: Body
