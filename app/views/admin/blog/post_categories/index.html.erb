@@ -4,19 +4,37 @@
   <%= form_for([:admin, @post]) do |f| %>
     <fieldset>
       <legend><%= t('.manage_categories') %></legend>
-        <table>
-        <% @post_categories.each do |category| -%>
-          <tr>
+        <table class="index">
+        <% @post_categories.each_with_index do |category, index| -%>
+          <tr id="<%= dom_id(category) %>" class="<%= index % 2 == 0 ? 'alt' : 'row' %>">
             <td><%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category) -%> <%= category.name -%></td>
-            <td><%= link_to_with_icon('edit', t("edit"), edit_admin_post_category_url(@post, category.id)) %></td>
-            <td><%= link_to_delete category, {:url => admin_post_category_url(@post, category.id)} %></td>
+            <td class="options" style="width: 120px">
+              <%= link_to_with_icon('edit', t("edit"), edit_admin_post_category_url(@post, category.id)) %> &nbsp;
+              <%= link_to_delete category, {:url => admin_post_category_url(@post, category.id)} %>
+            </td>
           </tr>
         <% end -%>
         </table>
       <%= button t("update") %>
     </fieldset>
   <% end %>
-  
-  <%= link_to icon('add') + ' ' + t("new_category"), new_admin_post_category_url(@post) %>
-  
 </div>
+  
+<div id="new_category"></div>
+  
+<p><%= link_to icon('add') + ' ' + t("new_category"), new_admin_post_category_url(@post), :id => "btn_new_category" %></p>
+  
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    jQuery(document).ready(function(){  
+      
+      jQuery('#btn_new_category').click(function (event) { 
+        event.preventDefault();
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#new_category').html(r);} });
+      });
+      
+    });
+  </script>
+<% end %>
