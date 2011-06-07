@@ -2,7 +2,7 @@
   <% if @posts.blank? %>
     <h1><%= t('blog.no_posts') %></h1>
   <% else %>
-    <%= render :partial => 'preview', :collection => @posts, :as => :post %>
+    <%= render :partial => 'blog/shared/preview', :collection => @posts, :as => :post %>
   <% end %>
   <br class="clear"/>
 

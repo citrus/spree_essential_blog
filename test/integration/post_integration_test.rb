@@ -95,6 +95,8 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
       end
     end
     
+    # [todo] make these capy tests
+    
     #should "not include post in day specific index" do
     #  get :index, :year => @post.year, :month => @post.month, :day => @post.day
     #  assert !assigns(:posts).include?(@post)
@@ -117,6 +119,7 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     
   end
   
+  # [todo] make these capy tests
   #
   #context "published posts" do
   #
@@ -160,19 +163,5 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   #
   #end
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
 end
