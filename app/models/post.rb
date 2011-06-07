@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
   
   acts_as_taggable
+
+  # for flash messages    
+  alias_attribute :name, :title
     
   has_and_belongs_to_many :post_categories
   alias_attribute :categories, :post_categories
