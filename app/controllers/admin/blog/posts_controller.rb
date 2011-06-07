@@ -7,7 +7,12 @@ class Admin::Blog::PostsController < Admin::ResourceController
     end
     
     def location_after_save
-      object_url
+      params[:post] ||= {}
+      if @post && params[:post][:post_category_ids].present?
+        admin_post_categories_path(@post)
+      else 
+        object_url
+      end      
     end 
     
     def find_resource
