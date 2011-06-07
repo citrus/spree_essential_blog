@@ -98,6 +98,8 @@ Change Log
 
 **2011/6/6**
 
+* added a few more tests
+* pulled GH1 (Thanks [detierno](https://github.com/detierno)!)
 * Switched to [dummier](https://github.com/citrus/dummier) for demo/testing
 * Improved testing
 * Improved documentation
@@ -112,7 +114,7 @@ Contributors
 ------------
 
 * Spencer Steffen [citrus](https://github.com/citrus)
-* Denis (Tierno)? [detierno](https://github.com/detierno)
+* Denis Tierno [detierno](https://github.com/detierno)
 
 If you'd like to help out feel free to fork and send me pull requests!
 
