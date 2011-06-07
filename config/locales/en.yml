@@ -15,6 +15,7 @@ en:
         blog: Blog
         rss: Subscribe via RSS
       archive:
+        where_to_next: Where to next?
         go_to_store: "Shop the Store"
         back_to_posts: "Back to the blog"           
     shared:
