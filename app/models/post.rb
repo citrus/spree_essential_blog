@@ -1,11 +1,12 @@
 class Post < ActiveRecord::Base
   
   acts_as_taggable
-  
+    
   has_and_belongs_to_many :post_categories
+  alias_attribute :categories, :post_categories
+  
   has_many :post_products, :dependent => :destroy
   has_many :products, :through => :post_products
-  
   has_many :images, :as => :viewable, :class_name => 'PostImage', :order => :position, :dependent => :destroy
   
   validates :title, :presence => true
@@ -21,7 +22,7 @@ class Post < ActiveRecord::Base
  	before_validation :create_path
   
   
-  # Creates date-part accessor for the posted_at timestamp for grouping purposes.
+  # Creates date-part accessors for the posted_at timestamp for grouping purposes.
   %w(day month year).each do |method|
     define_method method do
       self.posted_at.send(method)
@@ -77,8 +78,7 @@ class Post < ActiveRecord::Base
   	
   	def path_exists?(new_path)
   		post = Post.find_by_path(new_path)
-  		same_post = post == self
-  		return (post != nil && !same_post)
+  		post != nil && !(post == self)
   	end
 	
 end
