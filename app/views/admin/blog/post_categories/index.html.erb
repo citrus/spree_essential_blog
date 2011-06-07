@@ -7,7 +7,10 @@
         <table class="index">
         <% @post_categories.each_with_index do |category, index| -%>
           <tr id="<%= dom_id(category) %>" class="<%= index % 2 == 0 ? 'alt' : 'row' %>">
-            <td><%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category) -%> <%= category.name -%></td>
+            <td>
+              <%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category), :id => "post_category_id_#{index}" -%>
+              <%= label_tag "post_category_id_#{index}", category.name -%>
+            </td>
             <td class="options" style="width: 120px">
               <%= link_to_with_icon('edit', t("edit"), edit_admin_post_category_url(@post, category.id)) %> &nbsp;
               <%= link_to_delete category, {:url => admin_post_category_url(@post, category.id)} %>
