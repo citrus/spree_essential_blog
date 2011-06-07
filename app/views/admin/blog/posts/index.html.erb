@@ -27,7 +27,7 @@
     <tr id="<%= dom_id post %>">
       <td><%=link_to post.title, object_url(post) %></td>
       <td><%=link_to post.posted_at.strftime('%x %X'), object_url(post) %></td>
-      <td><%= post.live %></td>
+      <td><%= t(post.live ? 'yes' : 'no')%></td>
       <td>
       	<%= link_to_edit post %> &nbsp;
       	<%= link_to_delete post %>

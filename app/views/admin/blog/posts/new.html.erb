@@ -1,13 +1,14 @@
 <%= render :partial => 'admin/shared/contents_sub_menu' %>
 
+<h1><%= t('.new_post') %></h1>
+
 <% if @post.try(:errors).present? %>
   <%= render 'shared/error_messages', :target => @post %>
 <% end %>
 
-<% form_for([:admin, @post]) do |f| %>
+<%= form_for([:admin, @post]) do |f| %>
   <%= render "form", :form => f %>
   <p class="form-buttons">
     <%= button t("create") %> <%= t('or') %> <%= link_to t('cancel'), collection_url %>
   </p>
 <% end %>
-
