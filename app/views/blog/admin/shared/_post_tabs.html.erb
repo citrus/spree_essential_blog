@@ -1,6 +1,6 @@
 <%= render :partial => 'admin/shared/contents_sub_menu' %>
 
-<h1><%= (t(".editing_post") + " &ldquo;#{@post.title}&rdquo;").html_safe %></h1>
+<h1><%== t(".editing_post") + " &ldquo;#{@post.title}&rdquo;".html_safe %></h1>
 
 <% content_for :sidebar do %>
 
