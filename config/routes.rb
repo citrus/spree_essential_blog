@@ -33,6 +33,8 @@ Rails.application.routes.draw do
         resources :categories, :controller => "post_categories"
       end
       
+      resource :disqus_settings
+      
     end    
   end  
 end

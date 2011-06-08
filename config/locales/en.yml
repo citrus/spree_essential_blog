@@ -24,6 +24,9 @@ en:
         where_to_next: Where to next?
         go_to_store: "Shop the Store"
         back_to_posts: "Back to the blog"           
+    settings:
+      disqus: Disqus Settings
+      explain_disqus: Configure Disqus Comments for Blog
     shared:
       sidebar: 
         recent_posts: Recent Posts
