@@ -5,7 +5,9 @@ class Admin::Blog::PostsController < Admin::ResourceController
     update.before :set_category_ids
     
     def set_category_ids
-      params[:post][:post_category_ids].reject!{|i| i.to_i == 0 }
+      if params[:post] && params[:post][:post_category_ids].is_a?(Array)
+        params[:post][:post_category_ids].reject!{|i| i.to_i == 0 }
+      end
     end
     
     def translated_object_name

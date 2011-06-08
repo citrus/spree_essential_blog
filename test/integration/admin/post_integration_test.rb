@@ -55,7 +55,7 @@ class Admin::PostIntegrationTest < ActiveSupport::IntegrationCase
       @post = Factory.create(:post)
     end
     
-    should "update post, user and addresses" do
+    should "edit and update" do
       visit edit_admin_post_path(@post)
       
       within "#edit_post_#{@post.id}" do
@@ -69,7 +69,7 @@ class Admin::PostIntegrationTest < ActiveSupport::IntegrationCase
       assert_flash :notice, %(Post "tsop a tsuJ" has been successfully updated!)
     end
     
-    should "destroy the post" do
+    should "get destroyed" do
       visit admin_posts_path
       find("a[href='#']").click
       assert find_by_id("popup_ok").click

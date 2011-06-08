@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       
   end
   
-  namespace :admin do    
+  namespace :admin do
     scope(:module => "Blog") do
     
       resources :posts do 
