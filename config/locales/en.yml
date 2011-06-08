@@ -10,8 +10,33 @@ en:
     model_name: Category
     name: Name
     permalink: Permalink
+  
+  admin:
+    subnav:
+      posts: Posts
     
   blog:
+    admin:
+      posts:
+        new:
+          new_post: New Post
+      post_products:
+        index:
+          add_related_product: Add Related Products      
+      post_categories:
+        index:
+          manage_categories: Manage Categories
+      new:
+        new_category: New Category
+      edit:
+        edit_category: Edit Category
+              
+      shared:
+        post_tabs:
+          post_details: Post Details
+          editing_post: Editing Post
+          related_products: Related Products
+          post_categories: Categories
     comments: Comments
     home:
       title: Recent Posts
@@ -37,20 +62,13 @@ en:
         tags: Tags        
       preview: 
         read_more: Read More
-  admin:
-    blog:
-      post_products:
-        index:
-          add_related_product: Add Related Products      
-    subnav:
-      posts: Blog Posts      
-    shared:
       post_tabs:
         editing_post: Editing Post
         post_details: Post Details
         related_products: Related Products
         post_categories: Categories
-        
+    subnav:
+      posts: Blog Posts      
         
   
   faker:

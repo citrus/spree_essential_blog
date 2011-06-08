@@ -5,11 +5,13 @@ require_relative '../test_helper'
 
 class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   
+ 
   include Blog::PostsHelper
   
   def setup
     Post.destroy_all
   end
+   
   
   context "with some posts" do
     
@@ -31,6 +33,10 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
       # page two
       assert has_link?("2")
       assert has_link?("Next →")
+      
+      
+      #assert_equal nil, page.html.match(%(<span class="translation_missing")), "Missing translation!"
+      
     end
     
     should "get a blog post" do
@@ -184,8 +190,10 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     end
     
   end
-    
+   
 end
+  
+  
   
   
   # [todo] make these capy tests
