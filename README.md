@@ -1,7 +1,7 @@
 Spree Essential Blog
 ====================
 
-A complete blogging solution for [Spree Commerce](http://spreecommerce.com) with archives, categories, tags and related products. 
+A complete blogging solution for [Spree Commerce](http://spreecommerce.com) with archives, categories, tags, disqus comments and related products. 
 
 This extension relies on [spree_essentials](https://github.com/citrus/spree_essentials) for it's editor, uploads admin and a tab to live under in the admin.
 
@@ -96,10 +96,15 @@ You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just 
 Change Log
 ----------
 
+**2011/6/7**
 
-**0.1.0 2011/6/6**
+* Added Disqus for comments
+* Re-namespaced from Admin::Blog to Blog::Admin
+* Added more tests for categories
 
-* added a few more tests
+
+**2011/6/6**
+
 * pulled GH1 (Thanks [detierno](https://github.com/detierno)!)
 * Switched to [dummier](https://github.com/citrus/dummier) for demo & testing
 * Improved testing
