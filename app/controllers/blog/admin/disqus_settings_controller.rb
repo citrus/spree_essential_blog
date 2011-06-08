@@ -1,4 +1,4 @@
-class Admin::Blog::DisqusSettingsController < Admin::BaseController
+class Blog::Admin::DisqusSettingsController < Admin::BaseController
 
   def show
     @config = BlogConfiguration.current

@@ -1,4 +1,4 @@
-class Admin::Blog::PostProductsController < Admin::BaseController
+class Blog::Admin::PostProductsController < Admin::BaseController
   
   before_filter :load_data
   

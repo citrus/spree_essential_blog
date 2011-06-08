@@ -1,4 +1,4 @@
-<%= render :partial => 'admin/shared/post_tabs', :locals => {:current => "Images"} %>
+<%= render :partial => 'blog/admin/shared/post_tabs', :locals => {:current => "Images"} %>
 
 <% if @post_image.try(:errors).present? %>
   <%= render 'shared/error_messages', :target => @post_image %>

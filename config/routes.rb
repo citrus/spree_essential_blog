@@ -17,11 +17,8 @@ Rails.application.routes.draw do
     resources :posts, :path => 'blog' do
       get :archive, :on => :collection
     end
-      
-  end
   
-  namespace :admin do
-    scope(:module => "Blog") do
+    namespace :admin do
     
       resources :posts do 
         resources :images,   :controller => "post_images" do
@@ -36,5 +33,6 @@ Rails.application.routes.draw do
       resource :disqus_settings
       
     end    
+    
   end  
 end

@@ -1,4 +1,4 @@
-class Admin::Blog::PostCategoriesController < Admin::ResourceController
+class Blog::Admin::PostCategoriesController < Admin::ResourceController
   
   before_filter :load_data
   

@@ -1,4 +1,4 @@
-class Admin::Blog::PostsController < Admin::ResourceController
+class Blog::Admin::PostsController < Admin::ResourceController
   
   private
     
