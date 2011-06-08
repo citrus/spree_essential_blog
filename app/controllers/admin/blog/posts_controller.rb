@@ -2,17 +2,18 @@ class Admin::Blog::PostsController < Admin::ResourceController
   
   private
     
+    update.before :set_category_ids
+    
+    def set_category_ids
+      params[:post][:post_category_ids].reject!{|i| i.to_i == 0 }
+    end
+    
     def translated_object_name
       I18n.t('post.model_name')
     end
     
     def location_after_save
-      params[:post] ||= {}
-      if @post && params[:post][:post_category_ids].present?
-        admin_post_categories_path(@post)
-      else 
-        object_url
-      end      
+      params[:redirect_to] || object_url
     end 
     
     def find_resource

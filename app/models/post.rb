@@ -22,7 +22,7 @@ class Post < ActiveRecord::Base
 
   scope :live, where(:live => true ).order('posted_at DESC')
 
- 	before_validation :create_path
+ 	before_validation :create_path, :if => proc{ |record| record.title_changed? }
   
   
   # Creates date-part accessors for the posted_at timestamp for grouping purposes.
@@ -80,7 +80,7 @@ class Post < ActiveRecord::Base
   	end
   	
   	def path_exists?(new_path)
-  		post = Post.find_by_path(new_path)
+  		post = ::Post.find_by_path(new_path)
   		post != nil && !(post == self)
   	end
 	

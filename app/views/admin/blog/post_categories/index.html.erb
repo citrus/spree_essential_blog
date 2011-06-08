@@ -4,7 +4,7 @@
   <%= form_for([:admin, @post]) do |f| %>
     <fieldset>
       <legend><%= t('.manage_categories') %></legend>
-        <table class="index">
+      <table class="index">
         <% @post_categories.each_with_index do |category, index| -%>
           <tr id="<%= dom_id(category) %>" class="<%= index % 2 == 0 ? 'alt' : 'row' %>">
             <td>
@@ -17,7 +17,9 @@
             </td>
           </tr>
         <% end -%>
-        </table>
+      </table>
+      <%= hidden_field_tag "post[post_category_ids][]", 0 %>
+      <%= hidden_field_tag :redirect_to, request.fullpath %>
       <%= button t("update") %>
     </fieldset>
   <% end %>
