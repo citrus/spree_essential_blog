@@ -12,6 +12,7 @@ en:
     permalink: Permalink
     
   blog:
+    comments: Comments
     home:
       title: Recent Posts
     archive: Blog Archive

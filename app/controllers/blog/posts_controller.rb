@@ -38,6 +38,7 @@ class Blog::PostsController < Spree::BaseController
 	end
 	
   def show
+    @blog_config = BlogConfiguration.current
     @post = Post.live.includes(:tags, :images, :products).find_by_path(params[:id]) rescue nil
     return redirect_to archive_posts_path unless @post
   end
@@ -46,7 +47,7 @@ class Blog::PostsController < Spree::BaseController
 		@posts = Post.live.all
 	end
   
-  def get_sidebar    
+  def get_sidebar
     @archive_posts = Post.live.limit(10)
     @post_categories = PostCategory.all
     get_tags

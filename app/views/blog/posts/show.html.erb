@@ -31,5 +31,7 @@
       <%= render 'shared/products', :products => @post.products %>
     </div>
   <% end %>
+  
+  <%= render "blog/shared/disqus_comments" if @blog_config %>
 
 </div>
