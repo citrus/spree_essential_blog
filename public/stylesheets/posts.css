@@ -57,7 +57,9 @@
   padding-bottom: 1em;
   border-bottom: 1px solid #ccc;
 }
-
 .post-preview h2 {
   margin-bottom: 0;
+}
+.post-comments {
+  clear: both;
 }
