@@ -53,6 +53,7 @@ en:
     settings:
       disqus: Disqus Settings
       explain_disqus: Configure Disqus Comments for Blog
+      disqus_shortname: Disqus Shortname
     shared:
       sidebar: 
         recent_posts: Recent Posts
