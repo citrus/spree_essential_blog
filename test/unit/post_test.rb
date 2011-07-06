@@ -17,14 +17,14 @@ class PostTest < Test::Unit::TestCase
   end
   
   should "validate date time" do
-    @post = Factory.stub(:post)
+    @post = Factory.build(:post)
     @post.posted_at = "testing"
     assert !@post.valid?
   end
   
   should "parse date time" do
     date = DateTime.parse("2011/4/1 16:15")
-    @post = Factory.stub(:post)
+    @post = Factory.build(:post)
     @post.posted_at = "april 1 2011 - 4:15 pm"
     assert @post.valid?
     assert_equal date, @post.posted_at
