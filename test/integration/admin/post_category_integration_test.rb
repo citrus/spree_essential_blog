@@ -38,7 +38,7 @@ class Admin::PostCategoryIntegrationTest < ActiveSupport::IntegrationCase
     click_button "Create"
     @category = PostCategory.last
     assert_equal admin_post_categories_path(@post), current_path
-    assert_flash :notice, %(Category "#{@category.name}" has been successfully created!)
+    assert_flash :notice, %(Post category "#{@category.name}" has been successfully created!)
     assert_seen @category.name, :within => "tr#post_category_#{@category.id} td label"
   end
   
@@ -50,7 +50,7 @@ class Admin::PostCategoryIntegrationTest < ActiveSupport::IntegrationCase
     fill_in "Permalink", :with => "not-just-a-category"
     click_button "Update"
     assert_equal admin_post_categories_path(@post), current_path
-    assert_flash :notice, %(Category "Not just a Category" has been successfully updated!)
+    assert_flash :notice, %(Post category "Not just a Category" has been successfully updated!)
     assert_seen "Not just a Category", :within => "tr#post_category_#{@category.id} td label"    
   end
   

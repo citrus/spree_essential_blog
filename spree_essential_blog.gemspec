@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   # Development
 	s.add_development_dependency('shoulda',            '>= 2.11.3')
 	s.add_development_dependency('dummier',            '>= 0.2.0')
-	s.add_development_dependency('factory_girl',       '>= 2.0.0.rc3')
+	s.add_development_dependency('factory_girl',       '= 2.0.0.rc1')
 	s.add_development_dependency('capybara',           '>= 1.0.0')
 	s.add_development_dependency('selenium-webdriver', '>= 0.2.2')
   s.add_development_dependency('sqlite3',            '>= 1.3.3')
