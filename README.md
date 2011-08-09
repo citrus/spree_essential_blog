@@ -96,6 +96,11 @@ You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just 
 Change Log
 ----------
 
+**2011/8/9**
+
+* Pulled [GH2](https://github.com/citrus/spree_essential_blog/pull/2) (Thanks [@dv](https://github.com/dv)!) 
+
+
 **2011/6/7**
 
 * Added Disqus for comments
@@ -105,7 +110,7 @@ Change Log
 
 **2011/6/6**
 
-* pulled GH1 (Thanks [detierno](https://github.com/detierno)!)
+* Pulled [GH1](https://github.com/citrus/spree_essential_blog/pull/1) (Thanks [@detierno](https://github.com/detierno)!)
 * Switched to [dummier](https://github.com/citrus/dummier) for demo & testing
 * Improved testing
 * Improved documentation
@@ -119,8 +124,9 @@ Change Log
 Contributors
 ------------
 
-* Spencer Steffen ([citrus](https://github.com/citrus))
-* Denis Tierno ([detierno](https://github.com/detierno))
+* Spencer Steffen ([@citrus](https://github.com/citrus))
+* Denis Tierno ([@detierno](https://github.com/detierno))
+* David Verhasselt ([@dv](https://github.com/dv))
 
 If you'd like to help out feel free to fork and send me pull requests!
 
