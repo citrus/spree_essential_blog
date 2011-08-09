@@ -38,7 +38,7 @@ class Post < ActiveRecord::Base
   end
 	
 	def rendered_body
-	  render(:body).gsub("<!-- more -->", "")
+	  render(body.gsub("<!-- more -->", ""))
   end
 		
 	def preview_image
