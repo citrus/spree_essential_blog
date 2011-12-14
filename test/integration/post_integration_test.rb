@@ -32,11 +32,7 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
       assert has_link?("peanut butter")
       # page two
       assert has_link?("2")
-      assert has_link?("Next →")
-      
-      
-      #assert_equal nil, page.html.match(%(<span class="translation_missing")), "Missing translation!"
-      
+      assert has_link?("Next ›")
     end
     
     should "get a blog post" do
