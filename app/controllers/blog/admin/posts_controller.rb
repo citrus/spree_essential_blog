@@ -26,7 +26,7 @@ class Blog::Admin::PostsController < Admin::ResourceController
       params[:search] ||= {}
       params[:search][:meta_sort] ||= "posted_at.desc"
       @search = Post.metasearch(params[:search])
-      @collection = @search.paginate(:per_page => Spree::Config[:orders_per_page], :page => params[:page])
+      @collection = @search.page(params[:page]).per(Post.per_page)
     end
 
 end

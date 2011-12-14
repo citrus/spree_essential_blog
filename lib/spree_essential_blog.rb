@@ -4,7 +4,7 @@ require 'acts-as-taggable-on'
 module SpreeEssentialBlog
 
   def self.tab
-    { :label => "Posts", :route => :posts }
+    { :label => "Posts", :route => :admin_posts }
   end
   
   def self.sub_tab

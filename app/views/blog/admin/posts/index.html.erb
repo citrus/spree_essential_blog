@@ -37,7 +37,7 @@
   </tbody>
 </table>
 
-<%= will_paginate(:prev => "&#171; #{t('previous')}", :next => "#{t('next')} &#187;") %>
+<%= paginate @collection %>
 
 <% content_for :sidebar do %>
 <div class="box">
@@ -50,19 +50,7 @@
       <p>
         <label><%= t 'post.title' %></label><br />
         <%= f.text_field :title_like, :size => 25 %>
-      </p>      
-      <label><%= t("date_range") %></label><br />
-      <div class="yui-g date-range-filter">
-        <div class="yui-u sub-field first">
-          <%= f.spree_date_picker :posted_at_greater_than %><br />
-          <label class="sub"><%= t("start") %></label>
-        </div>
-        <div class="yui-u sub-field">
-          <%= f.spree_date_picker :posted_at_less_than %><br />
-          <label><%= t("stop") %></label>
-        </div>
-        <br class="clear"/>
-      </div>
+      </p>
     <% end %>
     <%= hook :admin_posts_index_search_buttons, locals do %>
       <p><%= button t("search") %></p>

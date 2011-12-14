@@ -7,7 +7,7 @@ class Blog::PostCategoriesController < Spree::BaseController
   def show
     @category = PostCategory.find_by_permalink(params[:id])
     @posts = @category.posts.live
-    @posts = @posts.paginate(:page => params[:page], :per_page => Post.per_page)
+    @posts = @posts.page(params[:page]).per(Post.per_page)
   end
   
   def get_sidebar    
