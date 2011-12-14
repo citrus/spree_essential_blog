@@ -8,20 +8,18 @@
   <br clear="clear" />
 
   <ul class="sidebar post-menu">
-    <%= hook :admin_post_tabs, {:current => current} do %>
-      <li<%= ' class="active"'.html_safe if current == "Post Details" %>>
-        <%= link_to t(".post_details"), edit_admin_post_url(@post) %>
-      </li>      
-      <li<%= ' class="active"'.html_safe if current == "Images" %>>
-        <%= link_to t("images"), admin_post_images_url(@post) %>
-      </li>     
-      <li<%= ' class="active"'.html_safe if current == "Related Products" %>>
-        <%= link_to t(".related_products"), admin_post_products_url(@post) %>
-      </li> 
-      <li<%= ' class="active"'.html_safe if current == "Categories" %>>
-        <%= link_to t(".post_categories"), admin_post_categories_url(@post) %>
-      </li>   
-    <% end %>
+    <li<%= ' class="active"'.html_safe if current == "Post Details" %>>
+      <%= link_to t(".post_details"), edit_admin_post_url(@post) %>
+    </li>      
+    <li<%= ' class="active"'.html_safe if current == "Images" %>>
+      <%= link_to t("images"), admin_post_images_url(@post) %>
+    </li>     
+    <li<%= ' class="active"'.html_safe if current == "Related Products" %>>
+      <%= link_to t(".related_products"), admin_post_products_url(@post) %>
+    </li> 
+    <li<%= ' class="active"'.html_safe if current == "Categories" %>>
+      <%= link_to t(".post_categories"), admin_post_categories_url(@post) %>
+    </li>
   </ul>
   <br clear="clear" />
 

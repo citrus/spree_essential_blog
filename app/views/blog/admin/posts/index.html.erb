@@ -42,19 +42,13 @@
 <% content_for :sidebar do %>
 <div class="box">
   <h3><%= t(:search) %></h3>
-
   <% @post = Post.metasearch %>
   <%= form_for [:admin, @post] do |f| %>
-    <%- locals = {:f => f} %>
-    <%= hook :admin_posts_index_search, locals do %>
-      <p>
-        <label><%= t 'post.title' %></label><br />
-        <%= f.text_field :title_like, :size => 25 %>
-      </p>
-    <% end %>
-    <%= hook :admin_posts_index_search_buttons, locals do %>
-      <p><%= button t("search") %></p>
-    <% end %>
+    <p>
+      <label><%= t 'post.title' %></label><br />
+      <%= f.text_field :title_like, :size => 25 %>
+    </p>
+    <p><%= button t("search") %></p>
   <% end %>
 </div>
 <% end %>
