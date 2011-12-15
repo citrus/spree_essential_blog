@@ -15,7 +15,7 @@ If you don't already have an existing Spree site, [click here](https://gist.gith
 
 Otherwise, follow these steps to get up and running with spree_essential_blog:
 
-First, add spree_essential_blog to your Gemfile... it hasn't been released to Rubygems yet so we'll grab them it git.
+First, add spree_essential_blog to your Gemfile... it hasn't been released to Rubygems yet so we'll grab it from git.
 
     gem 'spree_essential_blog', :git => 'git://github.com/citrus/spree_essential_blog.git'
 
@@ -96,6 +96,11 @@ You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just 
 Change Log
 ----------
 
+**2011/12/14**
+
+* Add Spree 0.70.x compatibility
+
+
 **2011/8/9**
 
 * Pulled [GH2](https://github.com/citrus/spree_essential_blog/pull/2) (Thanks [@dv](https://github.com/dv)!) 
@@ -134,4 +139,4 @@ If you'd like to help out feel free to fork and send me pull requests!
 License
 -------
 
-Copyright (c) 2011 Spencer Steffen, released under the New BSD License All rights reserved.
+Copyright (c) 2011 Spencer Steffen & Citrus, released under the New BSD License All rights reserved.
