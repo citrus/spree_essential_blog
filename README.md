@@ -53,25 +53,7 @@ Clone this repo to where you develop, bundle up, then run `dummier` to get the s
 
 This will generate a fresh rails app in test/dummy, install spree & spree_essential_blog, then migrate the test database. Sweet.
 
-
-### Spork
-    
-If you want to spork, run:
-
-    bundle exec spork
-        
-In another window, run all tests:
-
-    testdrb test/**/*_test.rb
-    
-Or just a specific test:
-
-    testdrb test/unit/page_test.rb
-  
-
-### No Spork
-
-If you don't want to spork, just use rake:
+Now run the tests with:
 
     rake
     
@@ -95,6 +77,10 @@ You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just 
 
 Change Log
 ----------
+
+**2011/12/15**
+
+* Remove spork dev dependency
 
 **2011/12/14**
 

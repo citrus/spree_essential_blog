@@ -28,7 +28,5 @@ Gem::Specification.new do |s|
 	s.add_development_dependency('capybara',           '>= 1.1.2')
 	s.add_development_dependency('selenium-webdriver', '>= 2.15.0')
   s.add_development_dependency('sqlite3',            '>= 1.3.5')
-  s.add_development_dependency('spork',              '>= 0.9.0.rc9')
-  s.add_development_dependency('spork-testunit',     '>= 0.0.7')
   
 end
