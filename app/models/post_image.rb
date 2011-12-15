@@ -20,6 +20,10 @@ class PostImage < Image
   def image_content?
     attachment_content_type.match(/\/(jpeg|png|gif|tiff|x-photoshop)/)
   end
+  
+  def has_alt?
+    !self.alt.blank?
+  end
      
   def attachment_sizes
     if image_content?
@@ -37,5 +41,5 @@ class PostImage < Image
       false
     end
   end
-  
+    
 end

@@ -18,9 +18,9 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # Runtime  
-  s.add_dependency('spree_essentials',    '>= 0.3.0')
+  s.add_dependency('spree_essentials',    '>= 0.3.1')
   s.add_dependency('acts-as-taggable-on', '>= 2.2.0')
-
+  
   # Development
 	s.add_development_dependency('shoulda',            '>= 3.0.0.beta2')
 	s.add_development_dependency('dummier',            '>= 0.2.4')
