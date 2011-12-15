@@ -2,6 +2,7 @@
 # encoding: UTF-8
 
 require 'test_helper'
+  
 
 class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   
@@ -12,6 +13,36 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     Post.destroy_all
   end
    
+
+  def assert_no_post(post)
+    within "#sidebar .post-archive" do
+      assert !has_link?(post.title)        
+    end
+    within "#content .posts" do
+      assert !has_link?(post.title)        
+    end
+    within ".tag-cloud ul.tags" do
+      post.tags.each do |tag|
+        assert !has_link?(tag.name)
+      end
+    end
+  end
+  
+  def assert_has_post(post)
+    within "#sidebar .post-archive" do
+      assert has_link?(post.title)        
+    end
+    within "#content .posts" do
+      assert has_link?(post.title)        
+    end
+    within ".tag-cloud ul.tags" do
+      post.tags.each do |tag|
+        assert has_link?(tag.name)
+      end
+    end
+  end
+
+
   
   context "with some posts" do
     
@@ -86,20 +117,6 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   
   context "unpublished posts" do
   
-    def assert_no_post(post)
-      within "#sidebar .post-archive" do
-        assert !has_link?(post.title)        
-      end
-      within "#content .posts" do
-        assert !has_link?(post.title)        
-      end
-      within ".tag-cloud ul.tags" do
-        post.tags.each do |tag|
-          assert !has_link?(tag.name)
-        end
-      end
-    end
-  
     setup do
       @tags = %(totally, not published).split(", ")
       @post = Factory.create(:post, :title => "Unpublished Post", :tag_list => @tags.join(", "), :live => false)
@@ -137,21 +154,7 @@ class Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   
   
   context "published posts" do
-  
-    def assert_has_post(post)
-      within "#sidebar .post-archive" do
-        assert has_link?(post.title)        
-      end
-      within "#content .posts" do
-        assert has_link?(post.title)        
-      end
-      within ".tag-cloud ul.tags" do
-        post.tags.each do |tag|
-          assert has_link?(tag.name)
-        end
-      end
-    end
-  
+    
     setup do
       @tags = %(totally, published).split(", ")
       @post = Factory.create(:post, :title => "Published Post", :tag_list => @tags.join(", "), :live => true)
