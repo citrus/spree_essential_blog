@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # encoding: UTF-8
 
-require_relative '../../test_helper'
+require 'test_helper'
 
 class Admin::DisqusIntegrationTest < ActiveSupport::IntegrationCase
   
