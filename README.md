@@ -1,11 +1,9 @@
-Spree Essential Blog
-====================
+# Spree Essentials [![Build Status](https://secure.travis-ci.org/citrus/spree_essential_blog.png)](http://travis-ci.org/citrus/spree_essential_blog)
+
 
 A complete blogging solution for [Spree Commerce](http://spreecommerce.com) with archives, categories, tags, disqus comments and related products. 
 
-This extension relies on [spree_essentials](https://github.com/citrus/spree_essentials) for it's editor, uploads admin and a tab to live under in the admin.
-
-[todo] write more...
+This extension relies on [spree_essentials](https://github.com/citrus/spree_essentials) for it's editor, uploads admin and tab in the admin.
 
 
 Installation
