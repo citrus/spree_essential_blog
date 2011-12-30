@@ -15,7 +15,7 @@ Otherwise, follow these steps to get up and running with spree_essential_blog:
 
 First, add spree_essential_blog to your Gemfile... it hasn't been released to Rubygems yet so we'll grab it from git.
 
-    gem 'spree_essential_blog', :git => 'git://github.com/citrus/spree_essential_blog.git'
+    gem 'spree_essential_blog', '~> 0.1.0'
 
 Run the generators to create the migration files.
 
@@ -76,9 +76,15 @@ You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just 
 Change Log
 ----------
 
+**0.1.0 - 2011/12/15**
+
+* Release v0.1.0
+
+
 **2011/12/15**
 
 * Remove spork dev dependency
+
 
 **2011/12/14**
 
