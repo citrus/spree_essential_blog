@@ -64,12 +64,16 @@ You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just 
     
     git clone git://github.com/citrus/spree_essential_blog.git
     cd spree_essential_blog
-    mv lib/dummy_hooks/after_migrate.rb.sample lib/dummy_hooks/after_migrate.rb
+    mkdir lib/dummy_hooks
+    mv test/dummy_hooks/after_migrate.rb.sample lib/dummy_hooks/after_migrate.rb
     bundle install
     bundle exec dummier
     cd test/dummy
-    rails s
-    
+    bundle exec rake db:migrate
+    bundle exec rake db:sample:blog
+    bundle exec rails s
+
+Setup is complete. Open `localhost:3000\blog` in your browser to see your posts.
 
 
 
