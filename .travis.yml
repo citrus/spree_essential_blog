@@ -5,8 +5,6 @@ rvm:
   - rbx
   - ree
 
-before_script:
-  - "sh -e /etc/init.d/xvfb start"
-  - "bundle exec dummier"
+before_script: "sh -e /etc/init.d/xvfb start"
 
-script: "DISPLAY=:99.0 bundle exec rake"
+script: "DISPLAY=:99.0 bundle exec dummier && bundle exec rake"
