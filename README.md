@@ -73,7 +73,7 @@ You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just 
     bundle exec rake db:sample:blog
     bundle exec rails s
 
-Setup is complete. Open `localhost:3000\blog` in your browser to see your posts.
+Setup is complete. Open `localhost:3000/blog` in your browser to see your posts.
 
 
 
