@@ -37,7 +37,7 @@ If you'd like some sample posts, just use the rake command from your project:
     
     rake db:sample:blog
 
-
+*Note: if you receive `identify: command not found` errors please ensure ImageMagick is installed.*
 
 Testing
 -------
