@@ -10,8 +10,8 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
   def setup
     Spree::Post.destroy_all
     Spree::PostCategory.destroy_all
-    @post = Factory.create(:post)
-    @category = Factory.create(:post_category)
+    @post = Factory.create(:spree_post)
+    @category = Factory.create(:spree_post_category)
   end
   
   should "have a link to post categories" do
@@ -24,8 +24,8 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
   should "get the post categories index" do
     visit admin_post_categories_path(@post)
     assert_seen "Categories", :within => ".sidebar.post-menu li.active"
-    assert_seen "Manage Categories", :within => ".edit_post legend"
-    assert_seen @category.name, :within => "tr#post_category_#{@category.id} td label"
+    assert_seen "Manage Categories", :within => ".edit_spree_post legend"
+    assert_seen @category.name, :within => "tr#spree_post_category_#{@category.id} td label"
     assert has_selector?("button[type=submit]")
     assert has_selector?("a#btn_new_category")
   end
@@ -39,7 +39,7 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
     @category = Spree::PostCategory.last
     assert_equal admin_post_categories_path(@post), current_path
     assert_flash :notice, %(Post category "#{@category.name}" has been successfully created!)
-    assert_seen @category.name, :within => "tr#post_category_#{@category.id} td label"
+    assert_seen @category.name, :within => "tr#spree_post_category_#{@category.id} td label"
   end
   
   should "edit existing post category" do
@@ -51,12 +51,12 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
     click_button "Update"
     assert_equal admin_post_categories_path(@post), current_path
     assert_flash :notice, %(Post category "Not just a Category" has been successfully updated!)
-    assert_seen "Not just a Category", :within => "tr#post_category_#{@category.id} td label"    
+    assert_seen "Not just a Category", :within => "tr#spree_post_category_#{@category.id} td label"    
   end
   
   should "destroy the post category" do
     visit admin_post_categories_path(@post)
-    find("tr#post_category_#{@category.id} td.options a[href='#']").click
+    find("tr#spree_post_category_#{@category.id} td.options a[href='#']").click
     assert find_by_id("popup_ok").click
   end  
   
@@ -85,8 +85,8 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
   context "with multiple categories" do
   
     setup do
-      PostCategory.destroy_all
-      @categories = %w(one two three four five).map{|i| Factory.create(:post_category, :name => i) }
+      Spree::PostCategory.destroy_all
+      @categories = %w(one two three four five).map{|i| Factory.create(:spree_post_category, :name => i) }
     end
     
     should "link a multiple post categories" do

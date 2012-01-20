@@ -8,7 +8,7 @@ module SpreeEssentialBlog
   end
   
   def self.sub_tab
-    [:posts, { :label => 'admin.subnav.posts', :match_path => '/posts' }]
+    [:posts, { :label => 'spree.admin.subnav.posts', :match_path => '/posts' }]
   end
   
   class Engine < Rails::Engine
@@ -16,6 +16,9 @@ module SpreeEssentialBlog
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.to_prepare do
+    
+      Spree::Blog::CONFIG = Spree::BlogConfiguration.new unless defined?(Spree::Blog::CONFIG)
+    
       #loads application's model / class decorators
       Dir.glob File.expand_path("../../app/**/*_decorator.rb", __FILE__) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)

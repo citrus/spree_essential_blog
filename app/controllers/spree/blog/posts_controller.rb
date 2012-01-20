@@ -38,7 +38,6 @@ class Spree::Blog::PostsController < Spree::BaseController
 	end
 	
   def show
-    @blog_config = Spree::BlogConfiguration.current
     @post = Spree::Post.live.includes(:tags, :images, :products).find_by_path(params[:id]) rescue nil
     return redirect_to archive_posts_path unless @post
   end

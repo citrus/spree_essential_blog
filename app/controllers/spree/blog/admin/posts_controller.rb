@@ -14,10 +14,6 @@ class Spree::Blog::Admin::PostsController < Spree::Admin::ResourceController
       end
     end
     
-    def translated_object_name
-      I18n.t('post.model_name')
-    end
-    
     def location_after_save
       object_url
     end 

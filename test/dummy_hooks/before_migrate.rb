@@ -1,4 +1,11 @@
-run "bundle exec rails g spree:site"
+# Install Spree Migrations
+rake "spree:install:migrations"
+
+# Mount Spree Engine
+insert_into_file File.join('config', 'routes.rb'), :after => "Application.routes.draw do\n" do
+  "  # Mount Spree's routes\n  mount Spree::Core::Engine, :at => '/'\n"
+end
+
 run "bundle exec rails g spree_essentials:install"
 run "bundle exec rails g spree_essentials:blog"
 

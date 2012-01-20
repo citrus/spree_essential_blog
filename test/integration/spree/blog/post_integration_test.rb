@@ -47,7 +47,7 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   context "with some posts" do
     
     setup do
-      11.times{ |i| Factory.create(:post, :title => "Capy post #{i}", :posted_at => Time.now - i.days) }
+      11.times{ |i| Factory.create(:spree_post, :title => "Capy post #{i}", :posted_at => Time.now - i.days) }
       assert_equal 11, Spree::Post.count
     end
     
@@ -86,7 +86,7 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   context "with a specific post" do
   
     setup do
-      @post = Factory.create(:post, :posted_at => DateTime.parse("2011/2/17"), :tag_list => "gruyere, emmentaler, fondue")
+      @post = Factory.create(:spree_post, :posted_at => DateTime.parse("2011/2/17"), :tag_list => "gruyere, emmentaler, fondue")
       assert_equal 1, Spree::Post.count
     end
   
@@ -119,7 +119,7 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
   
     setup do
       @tags = %(totally, not published).split(", ")
-      @post = Factory.create(:post, :title => "Unpublished Post", :tag_list => @tags.join(", "), :live => false)
+      @post = Factory.create(:spree_post, :title => "Unpublished Post", :tag_list => @tags.join(", "), :live => false)
       assert_equal 1, Spree::Post.count
     end
     
@@ -157,7 +157,7 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     
     setup do
       @tags = %(totally, published).split(", ")
-      @post = Factory.create(:post, :title => "Published Post", :tag_list => @tags.join(", "), :live => true)
+      @post = Factory.create(:spree_post, :title => "Published Post", :tag_list => @tags.join(", "), :live => true)
       assert_equal 1, Spree::Post.count
     end
     
@@ -201,11 +201,11 @@ end
   #
   #  setup do
   #    @date = DateTime.parse("2011/3/20 16:00")
-  #    @post = Factory.create(:post, :posted_at => @date)
-  #    10.times {|i| Factory.create(:post, :title => "Today's Sample Post #{i}",      :posted_at => @date) }
-  #    10.times {|i| Factory.create(:post, :title => "Last Weeks's Sample Post #{i}", :posted_at => @date - 1.week) }
-  #    10.times {|i| Factory.create(:post, :title => "Last Month's Sample Post #{i}", :posted_at => @date - 1.month) }
-  #    10.times {|i| Factory.create(:post, :title => "Last Years's Sample Post #{i}", :posted_at => @date - 1.year) }
+  #    @post = Factory.create(:spree_post, :posted_at => @date)
+  #    10.times {|i| Factory.create(:spree_post, :title => "Today's Sample Post #{i}",      :posted_at => @date) }
+  #    10.times {|i| Factory.create(:spree_post, :title => "Last Weeks's Sample Post #{i}", :posted_at => @date - 1.week) }
+  #    10.times {|i| Factory.create(:spree_post, :title => "Last Month's Sample Post #{i}", :posted_at => @date - 1.month) }
+  #    10.times {|i| Factory.create(:spree_post, :title => "Last Years's Sample Post #{i}", :posted_at => @date - 1.year) }
   #  end
   #
   #  should "assert proper post count" do

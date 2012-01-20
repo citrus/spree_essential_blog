@@ -1,7 +1,7 @@
-<% disqus_short_name = @blog_config.preferred_disqus_shortname %>
+<% disqus_short_name = Spree::Blog::CONFIG.preferred_disqus_shortname %>
 <% if !disqus_short_name.blank? %>
   <div class="post-comments">
-    <h3><%= t('blog.comments') %></h3>
+    <h3><%= t('spree.blog.comments') %></h3>
     <div id="disqus_thread"></div>
     <script type="text/javascript">
         var disqus_shortname = <%== disqus_short_name.inspect %>;

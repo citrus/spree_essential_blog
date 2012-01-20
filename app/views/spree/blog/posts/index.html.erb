@@ -1,12 +1,12 @@
 <div class="posts">
   <% if @posts.blank? %>
-    <h1><%= t('blog.no_posts') %></h1>
+    <h1><%= t('spree.blog.no_posts') %></h1>
   <% else %>
     <%= render :partial => 'spree/blog/shared/preview', :collection => @posts, :as => :post %>
   <% end %>
   <br class="clear"/>
 
-  <%= link_to(image_tag('blog/rss.png', :alt => t('blog.posts.index.rss')) + t('blog.posts.index.rss'), posts_path(:format => 'rss'), :id => "posts-rss") %>
+  <%= link_to(image_tag('blog/rss.png', :alt => t('spree.blog.posts.index.rss')) + t('spree.blog.posts.index.rss'), posts_path(:format => 'rss'), :id => "posts-rss") %>
   <%= paginate @posts %>
 
 </div>  

@@ -11,13 +11,13 @@ class Spree::PostCategoryTest < Test::Unit::TestCase
   should validate_presence_of(:name)
   
   should "automatically set path" do
-    @category = Factory.create(:post_category, :name => "This should parameterize")
+    @category = Factory.create(:spree_post_category, :name => "This should parameterize")
     assert_equal "this-should-parameterize", @category.permalink
   end
   
   should "not duplicate path" do
-    @category1 = Factory.create(:post_category)
-    @category2 = Factory.create(:post_category)
+    @category1 = Factory.create(:spree_post_category)
+    @category2 = Factory.create(:spree_post_category)
     assert @category1.permalink != @category2.permalink
   end
    

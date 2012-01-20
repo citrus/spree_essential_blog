@@ -10,13 +10,13 @@ class Spree::Blog::PostCategoryIntegrationTest < ActiveSupport::IntegrationCase
   def setup
     Spree::Post.destroy_all
     Spree::PostCategory.destroy_all
-    @categories = %w(Jellies Peanuts Butters).map{ |i| Factory.create(:post_category, :name => i) }
+    @categories = %w(Jellies Peanuts Butters).map{ |i| Factory.create(:spree_post_category, :name => i) }
     3.times{|i| 
-      post = Factory.create(:post, :title => "Capy post #{i}", :posted_at => Time.now - i.days) 
+      post = Factory.create(:spree_post, :title => "Capy post #{i}", :posted_at => Time.now - i.days) 
       post.categories = [@categories.slice(i)]
       post.save
     }
-    @posts = Post.order(:id).all
+    @posts = Spree::Post.order(:id).all
   end
     
   should "get the blog page" do
