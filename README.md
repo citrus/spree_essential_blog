@@ -1,4 +1,4 @@
-# Spree Essentials [![Build Status](https://secure.travis-ci.org/citrus/spree_essential_blog.png)](http://travis-ci.org/citrus/spree_essential_blog)
+# Spree Essential Blog [![Build Status](https://secure.travis-ci.org/citrus/spree_essential_blog.png)](http://travis-ci.org/citrus/spree_essential_blog)
 
 
 A complete blogging solution for [Spree Commerce](http://spreecommerce.com) with archives, categories, tags, disqus comments and related products. 
@@ -15,27 +15,47 @@ Otherwise, follow these steps to get up and running with spree_essential_blog:
 
 First, add spree_essential_blog to your Gemfile... it hasn't been released to Rubygems yet so we'll grab it from git.
 
-    gem 'spree_essential_blog', '~> 0.1.0'
+```ruby
+# Spree 1.0.x
+gem 'spree_essential_blog', :git => 'git://github.com/citrus/spree_essential_blog.git'
+
+# Spree 0.70.x
+gem 'spree_essential_blog', '~> 0.1.0'
+
+# Spree 0.60.x
+gem 'spree_essential_blog', :git => 'git://github.com/citrus/spree_essential_blog.git', :branch => '0.60.x'
+```    
+
 
 Run the generators to create the migration files.
 
-    rails g spree_essentials:install
-    rails g spree_essentials:blog
+```bash
+rails g spree_essentials:install
+rails g spree_essentials:blog
+```
+
 
 Now migrate your database...
 
-    rake db:migrate
-    
+```bash
+rake db:migrate
+```
+
+   
 Boot your server and checkout the admin!
 
-    rails s
-    
+```bash
+rails s
+```   
     
 ### Sample Posts
 
 If you'd like some sample posts, just use the rake command from your project:
-    
-    rake db:sample:blog
+   
+```bash 
+rake db:sample:blog
+```
+
 
 *Note: if you receive `identify: command not found` errors please ensure ImageMagick is installed.*
 
@@ -44,31 +64,38 @@ Testing
 
 Clone this repo to where you develop, bundle up, then run `dummier` to get the show started:
 
-    git clone git://github.com/citrus/spree_essential_blog.git
-    cd spree_essential_blog
-    bundle install
-    bundle exec dummier
+```bash
+git clone git://github.com/citrus/spree_essential_blog.git
+cd spree_essential_blog
+bundle install
+bundle exec dummier
+```
+
 
 This will generate a fresh rails app in test/dummy, install spree & spree_essential_blog, then migrate the test database. Sweet.
 
 Now run the tests with:
 
-    rake
-    
+```bash
+rake
+```
     
 
 Demo
 ----
 
 You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just `cd` to where you develop and run:
-    
-    git clone git://github.com/citrus/spree_essential_blog.git
-    cd spree_essential_blog
-    cp test/dummy_hooks/after_migrate.rb.sample test/dummy_hooks/after_migrate.rb
-    bundle install
-    bundle exec dummier
-    cd test/dummy
-    bundle exec rails s
+  
+```bash  
+git clone git://github.com/citrus/spree_essential_blog.git
+cd spree_essential_blog
+cp test/dummy_hooks/after_migrate.rb.sample test/dummy_hooks/after_migrate.rb
+bundle install
+bundle exec dummier
+cd test/dummy
+bundle exec rails s
+```
+
 
 Setup is complete. Open `localhost:3000/blog` in your browser to see your posts.
 
