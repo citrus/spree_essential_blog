@@ -6,8 +6,10 @@ A complete blogging solution for [Spree Commerce](http://spreecommerce.com) with
 This extension relies on [spree_essentials](https://github.com/citrus/spree_essentials) for it's editor, uploads admin and tab in the admin.
 
 
+------------------------------------------------------------------------------
 Installation
-------------
+------------------------------------------------------------------------------
+
 
 If you don't already have an existing Spree site, [click here](https://gist.github.com/946719) then come back later... You can also read the Spree docs [here](http://spreecommerce.com/documentation/getting_started.html)...
 
@@ -59,8 +61,10 @@ rake db:sample:blog
 
 *Note: if you receive `identify: command not found` errors please ensure ImageMagick is installed.*
 
+
+------------------------------------------------------------------------------
 Testing
--------
+------------------------------------------------------------------------------
 
 Clone this repo to where you develop, bundle up, then run `dummier` to get the show started:
 
@@ -79,10 +83,11 @@ Now run the tests with:
 ```bash
 rake
 ```
-    
 
+
+------------------------------------------------------------------------------
 Demo
-----
+------------------------------------------------------------------------------
 
 You can easily use the `test/dummy` app as a demo of spree_essential_blog. Just `cd` to where you develop and run:
   
@@ -100,9 +105,9 @@ bundle exec rails s
 Setup is complete. Open `localhost:3000/blog` in your browser to see your posts.
 
 
-
+------------------------------------------------------------------------------
 Change Log
-----------
+------------------------------------------------------------------------------
 
 **0.1.0 - 2011/12/15**
 
@@ -144,8 +149,9 @@ Change Log
 * Initial development
 
 
+------------------------------------------------------------------------------
 Contributors
-------------
+------------------------------------------------------------------------------
 
 * Spencer Steffen ([@citrus](https://github.com/citrus))
 * Denis Tierno ([@detierno](https://github.com/detierno))
@@ -154,8 +160,8 @@ Contributors
 
 If you'd like to help out feel free to fork and send me pull requests!
 
-
+------------------------------------------------------------------------------
 License
--------
+------------------------------------------------------------------------------
 
 Copyright (c) 2011 Spencer Steffen & Citrus, released under the New BSD License All rights reserved.
