@@ -6,18 +6,17 @@ en:
         model_name: Blog
         title: Title
         path: Path
-
-  post:
-    model_name: Post
-    title: Title
-    posted_at: Posted At
-    body: Body
-    live: Published
-    tags: Tags
-  post_category:
-    model_name: Category
-    name: Name
-    permalink: Permalink
+      post:
+        model_name: Post
+        title: Title
+        posted_at: Posted At
+        body: Body
+        live: Published
+        tags: Tags
+      post_category:
+        model_name: Category
+        name: Name
+        permalink: Permalink
   
   spree:
 

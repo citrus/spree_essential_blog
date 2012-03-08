@@ -12,9 +12,9 @@
 <table class="index">
   <thead>
 	<tr>
-    	<th><%= sort_link @search, :title, t("post.title") %></th>
-    	<th><%= sort_link @search, :posted_at, t("post.posted_at") %></th>
-    	<th><%= sort_link @search, :live, t("post.live") %></th>
+    	<th><%= sort_link @search, :title, t("activerecord.attributes.post.title") %></th>
+    	<th><%= sort_link @search, :posted_at, t("activerecord.attributes.post.posted_at") %></th>
+    	<th><%= sort_link @search, :live, t("activerecord.attributes.post.live") %></th>
     	<th><%= t("action") %></th>
 	</tr>
   </thead>
@@ -41,7 +41,7 @@
     <% @post = Spree::Post.metasearch %>
     <%= form_for [:admin, @post] do |f| %>
       <p>
-        <label><%= t 'post.title' %></label><br />
+        <label><%= t("activerecord.attributes.post.title") %></label><br />
         <%= f.text_field :title_like, :size => 25 %>
       </p>
       <p><%= button t("search") %></p>

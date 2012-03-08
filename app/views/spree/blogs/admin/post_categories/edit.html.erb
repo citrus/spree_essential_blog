@@ -2,6 +2,10 @@
 
 <h3><%= t(".edit_category") %></h3>
 
+<% if @post_category.try(:errors).present? %>
+  <%= render 'spree/shared/error_messages', :target => @post_category %>
+<% end %>
+
 <%= form_for([:admin, @post, @post_category], :url => admin_post_category_path(@post, @post_category.id)) do |form| %>
   <%= render "form", :form => form %>
   <p class="form-buttons">
