@@ -154,6 +154,8 @@ Contributors
 ------------------------------------------------------------------------------
 
 * Spencer Steffen ([@citrus](https://github.com/citrus))
+* Milo Delgado ([@moladukes](https://github.com/moladukes))
+* Pierre Basil ([@kpitn](https://github.com/kpitn))
 * Denis Tierno ([@detierno](https://github.com/detierno))
 * David Verhasselt ([@dv](https://github.com/dv))
 * Kyle West ([@kylewest](https://github.com/kylewest))
