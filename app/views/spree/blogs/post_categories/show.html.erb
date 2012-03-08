@@ -1,0 +1,12 @@
+<div class="posts" data-hook="post-categories-show">
+  <%= render :partial => 'spree/blogs/shared/preview', :collection => @posts, :as => :post %>
+
+  <br class="clear"/>
+
+  <%= paginate @posts %>
+
+</div>  
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'spree/blogs/shared/sidebar' %>
+<% end %>

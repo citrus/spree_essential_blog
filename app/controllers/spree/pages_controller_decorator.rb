@@ -1,5 +1,5 @@
 if defined?(Spree::PagesController)
   Spree::PagesController.instance_eval do
-    helper 'spree/blog/posts'
+    helper 'spree/blogs/posts'
   end  
 end

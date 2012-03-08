@@ -1,0 +1,45 @@
+<%= render :partial => 'spree/blogs/admin/shared/post_tabs', :locals => {:current => "Categories"} %>
+
+<div id="categories-box">
+  <%= form_for([:admin, @post]) do |f| %>
+    <fieldset>
+      <legend><%= t('.manage_categories') %></legend>
+      <table class="index">
+        <% @post_categories.each_with_index do |category, index| -%>
+          <tr id="<%= dom_id(category) %>" class="<%= index % 2 == 0 ? 'alt' : 'row' %>">
+            <td>
+              <%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category), :id => "post_category_id_#{index}" -%>
+              <%= label_tag "post_category_id_#{index}", category.name -%>
+            </td>
+            <td class="options" style="width: 120px">
+              <%= link_to_with_icon('edit', t("edit"), edit_admin_post_category_url(@post, category.id)) %> &nbsp;
+              <%= link_to_delete category, {:url => admin_post_category_url(@post, category.id)} %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+      <%= hidden_field_tag "post[post_category_ids][]", 0 %>
+      <%= hidden_field_tag :redirect_to, request.fullpath %>
+      <%= button t("update") %>
+    </fieldset>
+  <% end %>
+</div>
+  
+<div id="new_category"></div>
+  
+<p><%= link_to icon('add') + ' ' + t("new_category"), new_admin_post_category_url(@post), :id => "btn_new_category" %></p>
+  
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    jQuery(document).ready(function(){  
+      
+      jQuery('#btn_new_category').click(function (event) { 
+        event.preventDefault();
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#new_category').html(r);} });
+      });
+      
+    });
+  </script>
+<% end %>

@@ -7,7 +7,7 @@ module SpreeEssentialBlog
 
     config.to_prepare do
     
-      Spree::Blog::Config = Spree::BlogConfiguration.new unless Spree::Blog.const_defined?(:Config)
+      SpreeEssentialBlog::Config = Spree::BlogConfiguration.new unless SpreeEssentialBlog.const_defined?(:Config)
       
       Dir.glob File.expand_path("../../../app/**/*_decorator.rb", __FILE__) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)

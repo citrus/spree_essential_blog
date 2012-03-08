@@ -1,4 +1,4 @@
-class Spree::BlogConfiguration < Spree::Preferences::Configuration
+class Spree::BlogsConfiguration < Spree::Preferences::Configuration
   
   preference :disqus_shortname,  :string, :default => ''
   
