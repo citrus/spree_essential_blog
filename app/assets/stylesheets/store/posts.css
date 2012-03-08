@@ -8,16 +8,8 @@
 
 #posts-rss {
   display: block;
-  position: absolute;
-  left: 0;
-  bottom: 4px;
-  line-height: 16px;
+  float: right;
   text-decoration: none;
-  img {
-    display: block;
-    float: left;
-    margin-right: 5px;
-  }
 }
 
 .post-archive ul.archive {
@@ -26,21 +18,52 @@
   margin: 0;
 }
 .post-archive h4.year,
-.post-archive h5.month,
-.post-archive ul.archive li span.day {
+.post-archive h5.month {
   display: block;
   position: relative;
-  border-bottom: 1px solid #ccc;
   font-size: 17px;
   font-weight: normal;
-  margin: 0 0 0.5em 0;
+  margin: 0;
 }
+.post-archive h4.year {
+  border: 0;
+  background-color: #00ADEE;
+}
+.post-archive h4.year a {
+  display: block;
+  color: #fff;
+  padding: 3px 5px;
+}
+.post-archive h4.year a:link,
+.post-archive h4.year a:active {
+  color: #fff;
+}
+.post-archive h4.year a:hover {
+  background-color: #00B4F5;
+  color: #fff !important;
+}
+.post-archive h5.month {
+  font-size: 15px;
+  border-bottom: 1px solid #eee;
+}
+.post-archive h5.month {
+  margin-top: 5px;
+  border-top: 1px solid #eee;
+}
+.post-archive ul.archive li span.day {
+  display: block;
+  float: left;
+  width: 5%;
+  padding-right: 5%;
+  text-align: right;
+}
+
 .post-archive ul.archive li ul.posts {
   list-style-type: none;
   display: block;
   float: left;
   width: 90%;
-  margin: 0 0 1em 0;
+  margin: 0;
   padding: 0;
 }
 .post-archive ul.archive li ul.posts li {
@@ -55,7 +78,7 @@
 .post-preview {
   clear: both;
   padding-bottom: 1em;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
 }
 .post-preview h2 {
   margin-bottom: 0;

@@ -3,6 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "spree_essential_blog/version"
 
 Gem::Specification.new do |s|
+
   s.name        = "spree_essential_blog"
   s.version     = SpreeEssentialBlog::VERSION
   s.platform    = Gem::Platform::RUBY
@@ -17,16 +18,15 @@ Gem::Specification.new do |s|
   
   s.require_paths = ["lib"]
 
-  # Runtime  
-  s.add_dependency('spree_essentials',    '>= 0.4.0.rc1')
-  s.add_dependency('acts-as-taggable-on', '>= 2.2.0')
+  s.add_runtime_dependency('spree_essentials',    '~> 0.4.0.rc3')
+  s.add_runtime_dependency('acts-as-taggable-on', '~> 2.2.0')
   
-  # Development
-	s.add_development_dependency('shoulda',            '>= 3.0.0.beta2')
-	s.add_development_dependency('dummier',            '>= 0.2.4')
-	s.add_development_dependency('factory_girl',       '>= 2.3.2')
-	s.add_development_dependency('capybara',           '>= 1.1.2')
-	s.add_development_dependency('selenium-webdriver', '>= 2.15.0')
-  s.add_development_dependency('sqlite3',            '>= 1.3.5')
-  
+  s.add_development_dependency('shoulda',      '~> 3.0.0')
+	s.add_development_dependency('dummier',      '~> 0.3.0')
+	s.add_development_dependency('factory_girl', '~> 2.6.0')
+	s.add_development_dependency('capybara',     '~> 1.1.2')
+  s.add_development_dependency('sqlite3',      '~> 1.3.5')
+	s.add_development_dependency('simplecov',    '~> 0.6.1')
+	# s.add_development_dependency('turn',         '~> 0.9.3')
+
 end

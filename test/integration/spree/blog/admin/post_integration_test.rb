@@ -3,7 +3,7 @@
 
 require 'test_helper'
 
-class Spree::Blog::Admin::PostIntegrationTest < ActiveSupport::IntegrationCase
+class Spree::Blog::Admin::PostIntegrationTest < SpreeEssentials::IntegrationCase
 
   setup do
     Spree::Post.destroy_all
@@ -12,14 +12,14 @@ class Spree::Blog::Admin::PostIntegrationTest < ActiveSupport::IntegrationCase
   end
   
   should "have a link to new post" do
-    visit admin_posts_path
+    visit spree.admin_posts_path
     btn = find(".actions a.button").native
-    assert_match /#{new_admin_post_path}$/, btn.attribute('href')
+    assert_match /#{spree.new_admin_post_path}$/, btn.attribute('href')
     assert_equal "New Post", btn.text
   end
   
   should "get new post" do  
-    visit new_admin_post_path
+    visit spree.new_admin_post_path
     assert has_content?("New Post")
     within "#new_spree_post" do
       @labels.each do |f|
@@ -29,7 +29,7 @@ class Spree::Blog::Admin::PostIntegrationTest < ActiveSupport::IntegrationCase
   end
     
   should "validate post" do
-    visit new_admin_post_path
+    visit spree.new_admin_post_path
     click_button "Create"
     within "#errorExplanation" do
       assert_seen "3 errors prohibited this record from being saved:"
@@ -40,7 +40,7 @@ class Spree::Blog::Admin::PostIntegrationTest < ActiveSupport::IntegrationCase
   end
   
   should "create a post" do
-    visit new_admin_post_path
+    visit spree.new_admin_post_path
     within "#new_spree_post" do
       @labels.each_with_index do |label, index|
       	fill_in label, :with => @values[index]      
@@ -56,7 +56,7 @@ class Spree::Blog::Admin::PostIntegrationTest < ActiveSupport::IntegrationCase
     end
     
     should "edit and update" do
-      visit edit_admin_post_path(@post)
+      visit spree.edit_admin_post_path(@post)
       
       within "#edit_spree_post_#{@post.id}" do
         @labels.each_with_index do |label, index|
@@ -65,12 +65,12 @@ class Spree::Blog::Admin::PostIntegrationTest < ActiveSupport::IntegrationCase
         end
       end
       click_button "Update"
-      assert_equal edit_admin_post_path(@post.reload), current_path
+      assert_equal spree.admin_post_path(@post.reload), current_path
       assert_flash :notice, %(Post "tsop a tsuJ" has been successfully updated!)
     end
     
     should "get destroyed" do
-      visit admin_posts_path
+      visit spree.admin_posts_path
       find("a[href='#']").click
       assert find_by_id("popup_ok").click
     end

@@ -4,7 +4,7 @@
 require 'test_helper'
   
 
-class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
+class Spree::Blog::PostIntegrationTest < SpreeEssentials::IntegrationCase
   
  
   include Spree::Blog::PostsHelper
@@ -52,7 +52,7 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     end
     
     should "get the blog page" do
-      visit posts_path
+      visit spree.posts_path
       # first post
       assert has_link?("Capy post 1")
       # last post
@@ -68,14 +68,14 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     
     should "get a blog post" do
       @post = Spree::Post.first
-      visit full_post_path(@post.year, @post.month, @post.day, @post)
+      visit spree.full_post_path(@post.year, @post.month, @post.day, @post)
       within('h1') do
         assert has_content?(@post.title)
       end
     end
     
     should "get the archive" do
-      visit archive_posts_path
+      visit spree.archive_posts_path
       assert has_link?("Capy post 1")
       assert has_link?("Shop the Store")
     end
@@ -102,12 +102,12 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     end
     
     should "not find by tags" do
-      visit search_posts_path(:query => "some crazy random query")
+      visit spree.search_posts_path(:query => "some crazy random query")
       assert_seen "No posts found!", :within => ".posts h1"
     end
     
     should "find by tags" do
-      visit search_posts_path(:query => "emmentaler")
+      visit spree.search_posts_path(:query => "emmentaler")
       assert has_link?("Peanut Butter Jelly Time", :href => post_seo_path(@post))
       assert has_link?("Read More", :href => post_seo_path(@post))
     end
@@ -124,28 +124,28 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     end
     
     should "not include post in index" do
-      visit posts_path
+      visit spree.posts_path
       assert_no_post(@post)
     end
     
     should "not include post in day specific index" do
-      visit post_date_path(:year => @post.year, :month => @post.month, :day => @post.day)
+      visit spree.post_date_path(:year => @post.year, :month => @post.month, :day => @post.day)
       assert_no_post(@post)
     end    
     
     should "not include post in month specific index" do
-      visit post_date_path(:year => @post.year, :month => @post.month)
+      visit spree.post_date_path(:year => @post.year, :month => @post.month)
       assert_no_post(@post)
     end
     
     should "not include post in year specific index" do
-      visit post_date_path(:year => @post.year)
+      visit spree.post_date_path(:year => @post.year)
       assert_no_post(@post)
     end
     
     should "not include post in search results" do
       @tags.each do |tag|
-        visit search_posts_path(tag)
+        visit spree.search_posts_path(tag)
         assert_no_post(@post)
       end
     end
@@ -162,28 +162,28 @@ class Spree::Blog::PostIntegrationTest < ActiveSupport::IntegrationCase
     end
     
     should "not include post in index" do
-      visit posts_path
+      visit spree.posts_path
       assert_has_post(@post)
     end
     
     should "not include post in day specific index" do
-      visit post_date_path(:year => @post.year, :month => @post.month, :day => @post.day)
+      visit spree.post_date_path(:year => @post.year, :month => @post.month, :day => @post.day)
       assert_has_post(@post)
     end    
     
     should "not include post in month specific index" do
-      visit post_date_path(:year => @post.year, :month => @post.month)
+      visit spree.post_date_path(:year => @post.year, :month => @post.month)
       assert_has_post(@post)
     end
     
     should "not include post in year specific index" do
-      visit post_date_path(:year => @post.year)
+      visit spree.post_date_path(:year => @post.year)
       assert_has_post(@post)
     end
     
     should "not include post in search results" do
       @tags.each do |tag|
-        visit search_posts_path(tag)
+        visit spree.search_posts_path(tag)
         assert_has_post(@post)
       end
     end

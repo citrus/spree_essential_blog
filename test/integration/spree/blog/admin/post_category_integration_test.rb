@@ -3,7 +3,7 @@
 
 require 'test_helper'
 
-class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::IntegrationCase
+class Spree::Blog::Admin::PostCategoryIntegrationTest < SpreeEssentials::IntegrationCase
   
   #include Blog::PostsHelper
   
@@ -15,14 +15,14 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
   end
   
   should "have a link to post categories" do
-    visit admin_post_path(@post)
+    visit spree.admin_post_path(@post)
     within ".sidebar.post-menu" do
       assert has_link?("Categories")
     end
   end
   
   should "get the post categories index" do
-    visit admin_post_categories_path(@post)
+    visit spree.admin_post_categories_path(@post)
     assert_seen "Categories", :within => ".sidebar.post-menu li.active"
     assert_seen "Manage Categories", :within => ".edit_spree_post legend"
     assert_seen @category.name, :within => "tr#spree_post_category_#{@category.id} td label"
@@ -31,53 +31,53 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
   end
   
   should "add a new post category" do
-    visit admin_post_categories_path(@post)
+    visit spree.admin_post_categories_path(@post)
     click_link "btn_new_category"
     fill_in "Name", :with => "Just a Category"
     fill_in "Permalink", :with => "just-a-category"
     click_button "Create"
     @category = Spree::PostCategory.last
-    assert_equal admin_post_categories_path(@post), current_path
+    assert_equal spree.admin_post_categories_path(@post), current_path
     assert_flash :notice, %(Post category "#{@category.name}" has been successfully created!)
     assert_seen @category.name, :within => "tr#spree_post_category_#{@category.id} td label"
   end
   
   should "edit existing post category" do
-    visit edit_admin_post_category_path(@post, @category.id)
+    visit spree.edit_admin_post_category_path(@post, @category.id)
     assert_equal @category.name, find_field("Name").value
     assert_equal @category.permalink, find_field("Permalink").value
     fill_in "Name", :with => "Not just a Category"
     fill_in "Permalink", :with => "not-just-a-category"
     click_button "Update"
-    assert_equal admin_post_categories_path(@post), current_path
+    assert_equal spree.admin_post_categories_path(@post), current_path
     assert_flash :notice, %(Post category "Not just a Category" has been successfully updated!)
     assert_seen "Not just a Category", :within => "tr#spree_post_category_#{@category.id} td label"    
   end
   
   should "destroy the post category" do
-    visit admin_post_categories_path(@post)
+    visit spree.admin_post_categories_path(@post)
     find("tr#spree_post_category_#{@category.id} td.options a[href='#']").click
     assert find_by_id("popup_ok").click
   end  
   
   should "link a post category" do
-    visit admin_post_categories_path(@post)
+    visit spree.admin_post_categories_path(@post)
     assert !field_labeled(@category.name).checked?
     check @category.name
     click_button "Update"
     assert field_labeled(@category.name).checked?
-    assert_equal admin_post_categories_path(@post), current_path
+    assert_equal spree.admin_post_categories_path(@post), current_path
     assert_flash :notice, %(Post "#{@post.title}" has been successfully updated!)
   end 
    
   should "unlink a post category" do
     @post.categories << @category
     @post.save
-    visit admin_post_categories_path(@post.reload)
+    visit spree.admin_post_categories_path(@post.reload)
     assert field_labeled(@category.name).checked?
     uncheck @category.name
     click_button "Update"
-    assert_equal admin_post_categories_path(@post), current_path
+    assert_equal spree.admin_post_categories_path(@post), current_path
     assert !field_labeled(@category.name).checked?
     assert_flash :notice, %(Post "#{@post.title}" has been successfully updated!)
   end
@@ -90,7 +90,7 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
     end
     
     should "link a multiple post categories" do
-      visit admin_post_categories_path(@post)
+      visit spree.admin_post_categories_path(@post)
       @categories.each do |category|
         assert !field_labeled(category.name).checked?
       end
@@ -104,14 +104,14 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
       @categories.slice(3, 2).each do |category|
         assert !field_labeled(category.name).checked?
       end
-      assert_equal admin_post_categories_path(@post), current_path
+      assert_equal spree.admin_post_categories_path(@post), current_path
       assert_flash :notice, %(Post "#{@post.title}" has been successfully updated!)
     end 
    
     should "unlink multiple post category" do
       @post.categories = @categories.take(3)
       @post.save
-      visit admin_post_categories_path(@post.reload)
+      visit spree.admin_post_categories_path(@post.reload)
       @categories.take(3).each do |category|
         assert field_labeled(category.name).checked?
       end
@@ -122,7 +122,7 @@ class Spree::Blog::Admin::PostCategoryIntegrationTest < ActiveSupport::Integrati
       @categories.each do |category|
         assert !field_labeled(category.name).checked?
       end
-      assert_equal admin_post_categories_path(@post), current_path
+      assert_equal spree.admin_post_categories_path(@post), current_path
       assert_flash :notice, %(Post "#{@post.title}" has been successfully updated!)
     end 
        

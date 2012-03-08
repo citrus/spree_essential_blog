@@ -1,9 +1,4 @@
-en: 
-
-  # Not sure why yes and no aren't coming through from Spree's en.yml
-  no: "No"
-  yes: "Yes"
-
+en:
   post:
     model_name: Post
     title: Title
@@ -17,6 +12,7 @@ en:
     permalink: Permalink
   
   spree:
+
     admin:
       subnav:
         posts: Posts

@@ -3,7 +3,7 @@
 
 require 'test_helper'
 
-class Spree::Blog::PostCategoryIntegrationTest < ActiveSupport::IntegrationCase
+class Spree::Blog::PostCategoryIntegrationTest < SpreeEssentials::IntegrationCase
   
   include Spree::Blog::PostsHelper
   
@@ -20,18 +20,18 @@ class Spree::Blog::PostCategoryIntegrationTest < ActiveSupport::IntegrationCase
   end
     
   should "get the blog page" do
-    visit posts_path
+    visit spree.posts_path
     within ".post-sidebar .post-categories" do
       assert_seen "Categories"
       @categories.each do |i|
-        assert has_link?(i.name, :href => post_category_path(i))
+        assert has_link?(i.name, :href => spree.post_category_path(i))
       end
     end    
   end
     
   should "only have the first post in the first category" do
     @post = @posts.shift
-    visit post_category_path(@categories.first)
+    visit spree.post_category_path(@categories.first)
     assert_seen @post.title, :within => ".post-title h2"
     within "#content .posts" do
       @posts.each do |i|

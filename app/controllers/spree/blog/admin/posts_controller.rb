@@ -15,7 +15,8 @@ class Spree::Blog::Admin::PostsController < Spree::Admin::ResourceController
     end
     
     def location_after_save
-      object_url
+      path = params[:redirect_to].to_s.strip.sub(/^\/+/, "/")
+      path.blank? ? object_url : path
     end 
     
     def find_resource

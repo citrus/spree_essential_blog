@@ -4,22 +4,18 @@ class Spree::PostImage < Spree::Asset
 
   has_attached_file :attachment,
     :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
-    :default_style => :medium
-   
+    :default_style => :medium,
+    :url => '/spree/posts/:id/:style/:basename.:extension',
+    :path => ':rails_root/public/spree/posts/:id/:style/:basename.:extension'
+
   def image_content?
-    attachment_content_type.match(/\/(jpeg|png|gif|tiff|x-photoshop)/)
+    attachment_content_type.to_s.match(/\/(jpeg|png|gif|tiff|x-photoshop)/)
   end
   
-  def has_alt?
-    !self.alt.blank?
-  end
-     
   def attachment_sizes
-    if image_content?
-      { :mini => '48x48>', :small => '150x150>', :medium => '600x600>', :large => '950x700>' }
-    else
-      {}
-    end
+    hash = {}
+    hash.merge!(:mini => '48x48>', :small => '150x150>', :medium => '600x600>', :large => '950x700>') if image_content?
+    hash
   end
   
   def no_attachement_errors

@@ -1,4 +1,4 @@
-Spree::Core::Engine.routes.draw do
+Spree::Core::Engine.routes.append do
   
   scope(:module => "Blog") do
     

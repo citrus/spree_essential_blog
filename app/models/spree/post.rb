@@ -67,12 +67,11 @@ class Spree::Post < ActiveRecord::Base
     end
 		
     def create_path
-  		#downcase.gsub(/\s/, '-').gsub(/[^a-z0-9\-\_]/, '').gsub(/[\-]+/, '-')
   		count = 2
   		new_path = title.to_s.parameterize
   		exists = path_exists?(new_path)
   		while exists do
-  			dupe_path = "#{new_path}_#{count}"
+  			dupe_path = "#{new_path}-#{count}"
   			exists = path_exists?(dupe_path)
   			count += 1
   		end

@@ -16,6 +16,12 @@ class Spree::PostTest < Test::Unit::TestCase
     assert_equal "this-should-parameterize", @post.path
   end
   
+  should "increment path when it already exists" do
+    @post = Factory.create(:spree_post, :title => "This should parameterize")
+    @post2 = Factory.create(:spree_post, :title => "This should parameterize")
+    assert_equal "this-should-parameterize-2", @post2.path
+  end
+  
   should "validate date time" do
     @post = Factory.build(:spree_post)
     @post.posted_at = "testing"

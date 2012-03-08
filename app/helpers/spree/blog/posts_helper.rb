@@ -1,11 +1,11 @@
 module Spree::Blog::PostsHelper
 
   def post_seo_path(post)
-    full_post_path(post.year, post.month, post.day, post.to_param)
+    spree.full_post_path(post.year, post.month, post.day, post.to_param)
   end
   
   def post_seo_url(post)
-    full_post_url(post.year, post.month, post.day, post.to_param)
+    spree.full_post_url(post.year, post.month, post.day, post.to_param)
   end
   
   def post_rss(post)
