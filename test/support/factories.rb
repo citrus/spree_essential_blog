@@ -1,5 +1,10 @@
 FactoryGirl.define do
 
+  factory :spree_blog, :class => Spree::Blog do
+    title "Blog"
+    path "/blog"
+  end
+  
   factory :spree_post, :class => Spree::Post do
     title     "Peanut Butter Jelly Time"
     posted_at { Time.now + rand(10000) }

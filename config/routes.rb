@@ -19,7 +19,9 @@ Spree::Core::Engine.routes.append do
     end
   
     namespace :admin do
-    
+      
+      resources :blogs
+      
       resources :posts do 
         resources :images,   :controller => "post_images" do
           collection do

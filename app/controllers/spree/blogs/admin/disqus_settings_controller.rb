@@ -2,16 +2,16 @@ class Spree::Blogs::Admin::DisqusSettingsController < Spree::Admin::BaseControll
 
   def show
     @preferences = ['disqus_shortname']
-    @config = Spree::BlogsConfiguration.new
+    @config = Spree::BlogConfiguration.new
   end
 
   def edit
     @preferences = ['disqus_shortname']
-    @config = Spree::BlogsConfiguration.new
+    @config = Spree::BlogConfiguration.new
   end
 
   def update
-    config = Spree::BlogsConfiguration.new
+    config = Spree::BlogConfiguration.new
 
     params.each do |name, value|
       next unless config.has_preference? name

@@ -1,4 +1,12 @@
 en:
+
+  activerecord:
+    attributes:
+      blog:
+        model_name: Blog
+        title: Title
+        path: Path
+
   post:
     model_name: Post
     title: Title
@@ -19,6 +27,13 @@ en:
       
     blogs:
       admin:
+        blogs:
+          new:
+            new_blog: New Blog
+          index:
+            new_blog: New Blog
+            
+            
         posts:
           new:
             new_post: New Post
@@ -53,8 +68,10 @@ en:
           go_to_store: "Shop the Store"
           back_to_posts: "Back to the blog"           
       settings:
+        blogs: Manage Blogs
+        explain_blogs: Add or Edit Blogs for posts.
         disqus: Disqus Settings
-        explain_disqus: Configure Disqus Comments for Blog
+        explain_disqus: Configure Disqus Comments for Blog.
         disqus_shortname: Disqus Shortname
       shared:
         sidebar: 

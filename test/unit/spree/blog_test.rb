@@ -11,4 +11,6 @@ class Spree::BlogTest < Test::Unit::TestCase
   should validate_presence_of(:title)
   should validate_presence_of(:path)
   
+  should have_many(:posts)
+  
 end

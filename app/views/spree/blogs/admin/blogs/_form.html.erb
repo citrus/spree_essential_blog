@@ -1,0 +1,11 @@
+<%= form.field_container :title do %>
+  <%= form.label :title, t("activerecord.attributes.blog.title") %><br />
+  <%= form.text_field :title, :class => "text" %>
+  <%= error_message_on :blog, :title%>
+<% end %>
+
+<%= form.field_container :path do %>
+  <%= form.label :path, t("activerecord.attributes.blog.path") %><br />
+  <%= form.text_field :path, :class => "text" %>
+  <%= error_message_on :blog, :path %>
+<% end %>

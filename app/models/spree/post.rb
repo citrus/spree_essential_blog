@@ -5,12 +5,13 @@ class Spree::Post < ActiveRecord::Base
   # for flash messages    
   alias_attribute :name, :title
     
-  has_and_belongs_to_many :post_categories, :join_table => 'spree_post_categories_posts'
+  has_and_belongs_to_many :post_categories, :join_table => "spree_post_categories_posts"
   alias_attribute :categories, :post_categories
   
+  belongs_to :blog, :class_name => "Spree::Blog"
   has_many :post_products, :dependent => :destroy
   has_many :products, :through => :post_products
-  has_many :images, :as => :viewable, :class_name => 'Spree::PostImage', :order => :position, :dependent => :destroy
+  has_many :images, :as => :viewable, :class_name => "Spree::PostImage", :order => :position, :dependent => :destroy
   
   validates :title, :presence => true
   validates :path,  :presence => true, :uniqueness => true, :if => proc{ |record| !record.title.blank? }
@@ -20,7 +21,7 @@ class Spree::Post < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
 
-  scope :live, where(:live => true ).order('posted_at DESC')
+  scope :live, where(:live => true ).order("posted_at DESC")
 
  	before_validation :create_path, :if => proc{ |record| record.title_changed? }
   

@@ -15,3 +15,5 @@
     <%= t("or") %> <%= link_to t("cancel"), admin_disqus_settings_url %>
   </p>
 <% end %>
+
+<%= render "spree/blogs/admin/shared/select_configuration_tab" unless request.xhr? %>

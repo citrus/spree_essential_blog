@@ -11,6 +11,8 @@ class Spree::PostTest < Test::Unit::TestCase
   should validate_presence_of(:title)
   should validate_presence_of(:body)
   
+  should belong_to(:blog)
+  
   should "automatically set path" do
     @post = Factory.create(:spree_post, :title => "This should parameterize")
     assert_equal "this-should-parameterize", @post.path

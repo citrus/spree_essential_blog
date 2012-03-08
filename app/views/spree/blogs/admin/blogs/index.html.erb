@@ -1,0 +1,46 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<h1>Listing Blogs</h1>
+
+<table class="index">
+  <thead>
+	<tr>
+    	<th><%= sort_link @search, :title, t("activerecord.attributes.blog.title") %></th>
+    	<th><%= sort_link @search, :live, t("activerecord.attributes.blog.path") %></th>
+    	<th><%= t("action") %></th>
+	</tr>
+  </thead>
+  <tbody>
+    <%- @collection.each do |blog|%>
+    <tr id="<%= dom_id blog %>">
+      <td><%= link_to blog.title, object_url(blog) %></td>
+      <td><%= blog.path %></td>
+      <td>
+      	<%= link_to_edit blog %> &nbsp;
+      	<%= link_to_delete blog %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @collection %>
+
+<div id="new_blog"></div>
+<br/>
+<p>
+    <%= link_to icon('add') + ' ' + t(".new_blog"), new_admin_blog_url, :id => "new_blog_link" %>
+</p>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    jQuery(document).ready(function(){
+      jQuery('#new_blog_link').click(function (event) {
+        event.preventDefault();
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#new_blog').html(r);} });
+      });
+      jQuery("#admin-menu li:contains(Configuration)").addClass("selected");
+    });
+  </script>
+<% end %>

@@ -1,0 +1,14 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<% if @blog.try(:errors).present? %>
+  <%= render 'spree/shared/error_messages', :target => @blog %>
+<% end %>
+
+<%= form_for([:admin, @blog]) do |f| %>
+  <%= render "form", :form => f %>
+  <p class="form-buttons">
+    <%= button t("update") %> <%= t('or') %> <%= link_to t('cancel'), collection_url %>
+  </p>
+<% end %>
+
+<%= render "spree/blogs/admin/shared/select_configuration_tab" unless request.xhr? %>

@@ -10,3 +10,5 @@
 </dl>
 
 <p><%= link_to_with_icon 'edit', t("edit"), edit_admin_disqus_settings_path, :id => 'admin_disqus_settings_link' %></p>
+
+<%= render "spree/blogs/admin/shared/select_configuration_tab" unless request.xhr? %>
