@@ -4,8 +4,8 @@ en:
     attributes:
       blog:
         model_name: Blog
-        title: Title
-        path: Path
+        name: Name
+        permalink: Permalink
       post:
         model_name: Post
         title: Title

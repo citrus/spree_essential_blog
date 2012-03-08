@@ -1,8 +1,8 @@
 class CreateSpreeBlogs < ActiveRecord::Migration
   def self.up
     create_table :spree_blogs do |t|
-      t.string     :title,     :required => true
-      t.string     :path,      :required => true
+      t.string     :name, :nil => false
+      t.string     :permalink, :nil => false
       t.timestamps
     end
   end

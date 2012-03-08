@@ -10,7 +10,7 @@ class Spree::PostCategoryTest < Test::Unit::TestCase
   
   should validate_presence_of(:name)
   
-  should "automatically set path" do
+  should "automatically set permalink" do
     @category = Factory.create(:spree_post_category, :name => "This should parameterize")
     assert_equal "this-should-parameterize", @category.permalink
   end

@@ -1,11 +1,11 @@
-<%= form.field_container :title do %>
-  <%= form.label :title, t("activerecord.attributes.blog.title") %><br />
-  <%= form.text_field :title, :class => "text" %>
-  <%= error_message_on :blog, :title%>
+<%= form.field_container :name do %>
+  <%= form.label :name, t("activerecord.attributes.blog.name") %><br />
+  <%= form.text_field :name, :class => "text" %>
+  <%= error_message_on :blog, :name %>
 <% end %>
 
-<%= form.field_container :path do %>
-  <%= form.label :path, t("activerecord.attributes.blog.path") %><br />
-  <%= form.text_field :path, :class => "text" %>
-  <%= error_message_on :blog, :path %>
+<%= form.field_container :permalink do %>
+  <%= form.label :permalink, t("activerecord.attributes.blog.permalink") %><br />
+  <%= form.text_field :permalink, :class => "text" %>
+  <%= error_message_on :blog, :permalink %>
 <% end %>

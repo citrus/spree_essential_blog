@@ -8,8 +8,8 @@ class Spree::BlogTest < Test::Unit::TestCase
   
   subject { Spree::Blog.new }
   
-  should validate_presence_of(:title)
-  should validate_presence_of(:path)
+  should validate_presence_of(:name)
+  should validate_presence_of(:permalink)
   
   should have_many(:posts)
   

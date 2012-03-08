@@ -3,12 +3,10 @@
 
 require 'test_helper'
 
-class Spree::Blogs::Admin::BlogIntegrationTest < SpreeEssentials::IntegrationCase
+class Spree::Blogs::Admin::BlogsIntegrationTest < SpreeEssentials::IntegrationCase
 
   setup do
     Spree::Blog.destroy_all
-    @labels = %(Title, Path).split(', ')
-    @values = %(Blog, /blog).split(', ')
   end
   
   context "create a blog" do
@@ -18,8 +16,8 @@ class Spree::Blogs::Admin::BlogIntegrationTest < SpreeEssentials::IntegrationCas
       click_button "Create"
       within "#errorExplanation" do
         assert_seen "2 errors prohibited this record from being saved:"
-        assert_seen "Title can't be blank"
-        assert_seen "Path can't be blank"
+        assert_seen "Name can't be blank"
+        assert_seen "Permalink can't be blank"
       end
     end
       
@@ -30,8 +28,8 @@ class Spree::Blogs::Admin::BlogIntegrationTest < SpreeEssentials::IntegrationCas
       assert_equal "New Blog", btn.text
       btn.click
       within "#new_spree_blog" do
-        fill_in "Title", :with => "Blog"
-        fill_in "Path", :with => "/blog"
+        fill_in "Name", :with => "Blog"
+        fill_in "Permalink", :with => "/blog"
       end
       click_button "Create"
       assert_flash :notice, %(Blog "Blog" has been successfully created!)
@@ -51,8 +49,8 @@ class Spree::Blogs::Admin::BlogIntegrationTest < SpreeEssentials::IntegrationCas
         click_link "Edit"
       end
       within "#edit_spree_blog_#{@blog.id}" do
-        fill_in "Title", :with => "News"
-        fill_in "Path", :with => "/news"
+        fill_in "Name", :with => "News"
+        fill_in "Permalink", :with => "/news"
       end
       click_button "Update"
       assert_equal spree.admin_blogs_path, current_path

@@ -5,16 +5,16 @@
 <table class="index">
   <thead>
 	<tr>
-    	<th><%= sort_link @search, :title, t("activerecord.attributes.blog.title") %></th>
-    	<th><%= sort_link @search, :live, t("activerecord.attributes.blog.path") %></th>
+    	<th><%= sort_link @search, :name, t("activerecord.attributes.blog.name") %></th>
+    	<th><%= sort_link @search, :live, t("activerecord.attributes.blog.permalink") %></th>
     	<th><%= t("action") %></th>
 	</tr>
   </thead>
   <tbody>
     <%- @collection.each do |blog|%>
     <tr id="<%= dom_id blog %>">
-      <td><%= link_to blog.title, object_url(blog) %></td>
-      <td><%= blog.path %></td>
+      <td><%= link_to blog.name, object_url(blog) %></td>
+      <td><%= blog.permalink %></td>
       <td>
       	<%= link_to_edit blog %> &nbsp;
       	<%= link_to_delete blog %>
