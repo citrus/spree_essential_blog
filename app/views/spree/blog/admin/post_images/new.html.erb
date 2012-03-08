@@ -1,7 +1,13 @@
+<%= render :partial => 'spree/blog/admin/shared/post_tabs', :locals => {:current => "Images"} unless request.xhr? %>
+
 <h3><%= t("new_image") %></h3>
 
+<%= render 'spree/shared/error_messages', :target => @post_image %>
+
 <%= form_for(@post_image, :url => admin_post_images_path(@post), :html => { :multipart => true }) do |form| %>
-  <%= render "form", :form => form %>
+  <table class="basic-table">
+    <%= render "form", :form => form %>
+  </table>
   <p class="form-buttons">
     <%= button t("create") %>
     or <%= link_to t("cancel"), "#", :id => "cancel_link" %>
@@ -14,6 +20,3 @@
     jQuery('#images').html('');
   }); 
 </script>
-
- 
- 

@@ -11,5 +11,10 @@ FactoryGirl.define do
   factory :spree_post_category, :class => Spree::PostCategory do
     name  "Jellies"
   end
+  
+  factory :spree_post_image, :class => Spree::PostImage do
+    viewable { Spree::Post.first }
+    attachment { sample_image }
+  end
 
 end

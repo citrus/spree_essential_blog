@@ -1,6 +1,6 @@
 Spree::Core::Engine.routes.append do
   
-  scope(:module => "Blog") do
+  scope(:module => "blog") do
     
     constraints(
       :year  => /\d{4}/,
