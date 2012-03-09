@@ -3,7 +3,7 @@
   <h3><%= t('.recent_posts') %></h3>  
   <%= render 'spree/blogs/shared/archive', :posts => @archive_posts %>
   
-  <p class="more"><%= link_to t('.view_archive'), archive_posts_path %></p>
+  <p class="more"><%= link_to t('.view_archive'), archive_posts_path(@blog) %></p>
   
   <div class="post-categories" data-hook="post-categories">
     <h3><%= t('.categories') %></h3>

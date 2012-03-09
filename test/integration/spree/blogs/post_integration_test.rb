@@ -10,7 +10,8 @@ class Spree::Blogs::PostIntegrationTest < SpreeEssentials::IntegrationCase
   include Spree::Blogs::PostsHelper
   
   def setup
-    Spree::Post.destroy_all
+    Spree::Blog.destroy_all
+    @blog = Factory(:spree_blog)
   end
    
 
@@ -52,7 +53,7 @@ class Spree::Blogs::PostIntegrationTest < SpreeEssentials::IntegrationCase
     end
     
     should "get the blog page" do
-      visit spree.posts_path
+      visit spree.blog_posts_path(@blog)
       # first post
       assert has_link?("Capy post 1")
       # last post
@@ -68,14 +69,14 @@ class Spree::Blogs::PostIntegrationTest < SpreeEssentials::IntegrationCase
     
     should "get a blog post" do
       @post = Spree::Post.first
-      visit spree.full_post_path(@post.year, @post.month, @post.day, @post)
+      visit spree.full_post_path(@blog, @post.year, @post.month, @post.day, @post)
       within('h1') do
         assert has_content?(@post.title)
       end
     end
     
     should "get the archive" do
-      visit spree.archive_posts_path
+      visit spree.archive_posts_path(@blog)
       assert has_link?("Capy post 1")
       assert has_link?("Shop the Store")
     end
@@ -91,7 +92,7 @@ class Spree::Blogs::PostIntegrationTest < SpreeEssentials::IntegrationCase
     end
   
     should "find by seo path" do
-      visit post_seo_path(@post)
+      visit post_seo_path(@blog, @post)
       assert_seen "Peanut Butter Jelly Time", :within => ".post-title h1"
       assert_seen "Thursday February 17, 2011", :within => ".post-title h5"
       within ".post-tags" do
@@ -102,14 +103,14 @@ class Spree::Blogs::PostIntegrationTest < SpreeEssentials::IntegrationCase
     end
     
     should "not find by tags" do
-      visit spree.search_posts_path(:query => "some crazy random query")
+      visit spree.search_posts_path(@blog, :query => "some crazy random query")
       assert_seen "No posts found!", :within => ".posts h1"
     end
     
     should "find by tags" do
-      visit spree.search_posts_path(:query => "emmentaler")
-      assert has_link?("Peanut Butter Jelly Time", :href => post_seo_path(@post))
-      assert has_link?("Read More", :href => post_seo_path(@post))
+      visit spree.search_posts_path(@blog, :query => "emmentaler")
+      assert has_link?("Peanut Butter Jelly Time", :href => post_seo_path(@blog, @post))
+      assert has_link?("Read More", :href => post_seo_path(@blog, @post))
     end
   
   end
@@ -124,28 +125,28 @@ class Spree::Blogs::PostIntegrationTest < SpreeEssentials::IntegrationCase
     end
     
     should "not include post in index" do
-      visit spree.posts_path
+      visit spree.blog_posts_path(@blog)
       assert_no_post(@post)
     end
     
     should "not include post in day specific index" do
-      visit spree.post_date_path(:year => @post.year, :month => @post.month, :day => @post.day)
+      visit spree.post_date_path(@blog, :year => @post.year, :month => @post.month, :day => @post.day)
       assert_no_post(@post)
     end    
     
     should "not include post in month specific index" do
-      visit spree.post_date_path(:year => @post.year, :month => @post.month)
+      visit spree.post_date_path(@blog, :year => @post.year, :month => @post.month)
       assert_no_post(@post)
     end
     
     should "not include post in year specific index" do
-      visit spree.post_date_path(:year => @post.year)
+      visit spree.post_date_path(@blog, :year => @post.year)
       assert_no_post(@post)
     end
     
     should "not include post in search results" do
       @tags.each do |tag|
-        visit spree.search_posts_path(tag)
+        visit spree.search_posts_path(@blog, tag)
         assert_no_post(@post)
       end
     end
@@ -162,28 +163,28 @@ class Spree::Blogs::PostIntegrationTest < SpreeEssentials::IntegrationCase
     end
     
     should "not include post in index" do
-      visit spree.posts_path
+      visit spree.blog_posts_path(@blog)
       assert_has_post(@post)
     end
     
     should "not include post in day specific index" do
-      visit spree.post_date_path(:year => @post.year, :month => @post.month, :day => @post.day)
+      visit spree.post_date_path(@blog, :year => @post.year, :month => @post.month, :day => @post.day)
       assert_has_post(@post)
     end    
     
     should "not include post in month specific index" do
-      visit spree.post_date_path(:year => @post.year, :month => @post.month)
+      visit spree.post_date_path(@blog, :year => @post.year, :month => @post.month)
       assert_has_post(@post)
     end
     
     should "not include post in year specific index" do
-      visit spree.post_date_path(:year => @post.year)
+      visit spree.post_date_path(@blog, :year => @post.year)
       assert_has_post(@post)
     end
     
     should "not include post in search results" do
       @tags.each do |tag|
-        visit spree.search_posts_path(tag)
+        visit spree.search_posts_path(@blog, tag)
         assert_has_post(@post)
       end
     end

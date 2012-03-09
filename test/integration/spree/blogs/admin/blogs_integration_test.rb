@@ -15,7 +15,7 @@ class Spree::Blogs::Admin::BlogsIntegrationTest < SpreeEssentials::IntegrationCa
       visit spree.new_admin_blog_path
       click_button "Create"
       within "#errorExplanation" do
-        assert_seen "2 errors prohibited this record from being saved:"
+        assert_seen "errors prohibited this record from being saved:"
         assert_seen "Name can't be blank"
         assert_seen "Permalink is invalid"
       end

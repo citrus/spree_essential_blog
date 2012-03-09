@@ -13,7 +13,7 @@ class Spree::Post < ActiveRecord::Base
   has_many :products, :through => :post_products
   has_many :images, :as => :viewable, :class_name => "Spree::PostImage", :order => :position, :dependent => :destroy
   
-  validates :title, :presence => true
+  validates :blog_id, :title, :presence => true
   validates :path,  :presence => true, :uniqueness => true, :if => proc{ |record| !record.title.blank? }
   validates :body,  :presence => true
   validates :posted_at, :datetime => true

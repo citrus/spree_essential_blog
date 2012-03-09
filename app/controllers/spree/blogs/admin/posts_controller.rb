@@ -1,7 +1,12 @@
 class Spree::Blogs::Admin::PostsController < Spree::Admin::ResourceController
-
+      
   def index
     @pages = collection
+  end
+  
+  def new
+    @post = Spree::Post.new
+    @post.posted_at ||= Time.now
   end
 
   private

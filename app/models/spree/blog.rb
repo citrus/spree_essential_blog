@@ -12,7 +12,11 @@ class Spree::Blog < ActiveRecord::Base
   end
 
   def self.find_by_permalink(path)
-    find_by_permalink! rescue nil
+    find_by_permalink!(path) rescue ActiveRecord::RecordNotFound
+  end
+  
+  def self.to_options
+    self.order(:name).map{|i| [ i.name, i.id ] }
   end
   
   def to_param

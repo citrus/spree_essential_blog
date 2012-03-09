@@ -1,12 +1,18 @@
+<%= form.field_container :blog_id do %>
+  <%= form.label :blog_id, t("activerecord.attributes.blog.model_name") %><br />
+  <%= form.select :blog_id, Spree::Blog.to_options, :class => 'title' %>
+  <%= error_message_on :post, :blog_id %>
+<% end %>
+
 <%= form.field_container :title do %>
   <%= form.label :title, t("activerecord.attributes.post.title") %><br />
   <%= form.text_field :title, :class => 'title' %>
-  <%= error_message_on :post, :title%>
+  <%= error_message_on :post, :title %>
 <% end %>
 
 <%= form.field_container :posted_at do %>
   <%= form.label :posted_at, t("activerecord.attributes.post.posted_at") %><br />
-  <%= form.text_field :posted_at, :class => 'text', :value => (@post.posted_at.to_s(:long) unless @post.new_record?) %><br />
+  <%= form.text_field :posted_at, :class => 'text', :value => (@post.posted_at.to_s(:long) unless @post.posted_at.nil?) %><br />
   <%= error_message_on :post, :posted_at %>
 <% end %>
 
