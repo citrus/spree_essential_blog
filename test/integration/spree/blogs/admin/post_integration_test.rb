@@ -76,4 +76,42 @@ class Spree::Blogs::Admin::PostIntegrationTest < SpreeEssentials::IntegrationCas
     
   end
   
+  context "several posts on multiple blogs" do
+    
+    BLOGS = %w(Blog News Press)
+    
+    setup do
+      Spree::Blog.destroy_all
+      @blogs = BLOGS.map{|i| Factory(:spree_blog, :name => i) }
+      @blogs.each_with_index do |blog, i|
+        Factory(:spree_post, :blog => blog, :title => "Post on #{blog.name}", :posted_at => Time.now - i.minutes)
+      end
+    end
+  
+    should "see all posts" do
+      visit spree.admin_posts_path
+      BLOGS.each_with_index do |name, i|
+        assert_seen "Post on #{name}", :within => "tbody tr:nth-child(#{i + 1})"
+      end
+    end
+    
+    BLOGS.each_with_index do |name, i|
+      should "use filter to only show posts in `#{name}`" do
+        visit spree.admin_posts_path
+        within "#sidebar" do
+          select name, :from => "Blog"
+          click_button "Search"
+        end
+        assert_seen "Post on #{name}", :within => "tbody tr:first"
+        within "tbody" do
+          BLOGS.each do |other|
+            next if name == other
+            assert !has_content?("Post on #{other}")
+          end
+        end
+      end
+    end
+  
+  end
+  
 end
