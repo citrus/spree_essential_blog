@@ -1,8 +1,9 @@
 class Spree::Blogs::PostCategoriesController < Spree::BaseController
+  
   helper 'spree/blogs/posts'
-  
+
+  before_filter :get_blog  
   before_filter :get_sidebar, :only => [:index, :search, :show]
-  
   
   def show
     @category = Spree::PostCategory.find_by_permalink(params[:id])
@@ -18,6 +19,10 @@ class Spree::Blogs::PostCategoriesController < Spree::BaseController
   
   def get_tags
     @tags = Spree::Post.live.tag_counts.order('count DESC').limit(25)
+  end
+  
+  def get_blog
+    @blog = Spree::Blog.find_by_permalink!(params[:blog_id])
   end
   
 end

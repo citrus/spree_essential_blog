@@ -29,8 +29,6 @@ class Spree::Blogs::PostCategoryIntegrationTest < SpreeEssentials::IntegrationCa
     
   should "only have the first post in the first category" do
     @post = @posts.shift
-    puts @blog.inspect
-    puts spree.post_category_path(@blog, @categories.first)
     visit spree.post_category_path(@blog, @categories.first)
     assert_seen @post.title, :within => ".post-title h2"
     within "#content .posts" do

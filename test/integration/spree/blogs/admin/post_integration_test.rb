@@ -32,10 +32,9 @@ class Spree::Blogs::Admin::PostIntegrationTest < SpreeEssentials::IntegrationCas
     visit spree.new_admin_post_path
     click_button "Create"
     within "#errorExplanation" do
-      assert_seen "3 errors prohibited this record from being saved:"
+      assert_seen "2 errors prohibited this record from being saved:"
       assert_seen "Title can't be blank"
       assert_seen "Body can't be blank"
-      assert_seen "Posted at is an invalid date."      
     end
   end
   
