@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Spree::PostCategoryTest < Test::Unit::TestCase
+class Spree::PostCategoryTest < ActiveSupport::TestCase
 
   def setup
     Spree::PostCategory.destroy_all

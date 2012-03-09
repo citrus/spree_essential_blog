@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class Spree::PostTest < Test::Unit::TestCase
+class Spree::PostTest < ActiveSupport::TestCase
 
-  def setup
+  setup do
     Spree::Post.destroy_all
   end
   

@@ -17,7 +17,7 @@ class Spree::Blogs::Admin::BlogsIntegrationTest < SpreeEssentials::IntegrationCa
       within "#errorExplanation" do
         assert_seen "2 errors prohibited this record from being saved:"
         assert_seen "Name can't be blank"
-        assert_seen "Permalink can't be blank"
+        assert_seen "Permalink is invalid"
       end
     end
       
@@ -29,7 +29,7 @@ class Spree::Blogs::Admin::BlogsIntegrationTest < SpreeEssentials::IntegrationCa
       btn.click
       within "#new_spree_blog" do
         fill_in "Name", :with => "Blog"
-        fill_in "Permalink", :with => "/blog"
+        fill_in "Permalink", :with => "blog"
       end
       click_button "Create"
       assert_flash :notice, %(Blog "Blog" has been successfully created!)
@@ -50,7 +50,7 @@ class Spree::Blogs::Admin::BlogsIntegrationTest < SpreeEssentials::IntegrationCa
       end
       within "#edit_spree_blog_#{@blog.id}" do
         fill_in "Name", :with => "News"
-        fill_in "Permalink", :with => "/news"
+        fill_in "Permalink", :with => "news"
       end
       click_button "Update"
       assert_equal spree.admin_blogs_path, current_path

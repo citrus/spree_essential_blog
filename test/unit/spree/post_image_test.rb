@@ -1,13 +1,12 @@
 require 'test_helper'
 
 class Spree::PostImageTest < ActiveSupport::TestCase
-  
-  should belong_to(:viewable)
-  
+   
   setup do
     @post_image = Spree::PostImage.new
   end
-  
+
+  should belong_to(:viewable)
   should validate_attachment_presence(:attachment)
   
   %w(image/jpeg image/gif image/png image/tiff).each do |mime|  
