@@ -12,6 +12,7 @@ class Spree::BlogTest < ActiveSupport::TestCase
   
   should have_many(:posts)
   should validate_presence_of(:name)
+  should ensure_length_of(:permalink).is_at_least(3).is_at_most(40)
                 
   [ "no spaces", "Chars!!", "-", "_", "/" ].each do |val|
     should_not allow_value(val).for(:permalink)
@@ -23,34 +24,34 @@ class Spree::BlogTest < ActiveSupport::TestCase
 
   should "automatically set permalink" do
     @blog = Factory.create(:spree_blog, :name => "This should parameterize", :permalink => "")
-    assert_equal "/this-should-parameterize", @blog.permalink
+    assert_equal "this-should-parameterize", @blog.permalink
   end
   
   should "normalize permalink" do
-    @blog = Factory.create(:spree_blog, :name => "This should parameterize", :permalink => "omG-PERMA-link__-/")
-    assert_equal "/omg-perma-link", @blog.permalink
+    @blog = Factory.create(:spree_blog, :name => "This should parameterize", :permalink => "//omG-PERMA-link__-/")
+    assert_equal "omg-perma-link", @blog.permalink
   end
-   
-  should "validate length of permalink when too short" do
-    subject.permalink = "x"
-    subject.valid?
-    assert subject.errors.include?(:permalink)
-  end
-  
-  should "validate length of permalink when too short" do
-    subject.permalink = "x" * 40
-    subject.valid?
-    assert subject.errors.include?(:permalink)
-  end
-   
+      
   context "an existing blog" do
     
     setup do
-      Factory(:spree_blog)
+      @blog = Factory(:spree_blog)
     end
     
     should validate_uniqueness_of(:permalink)
-  
+    
+    should "find by permalink" do
+      assert_equal @blog, Spree::Blog.find_by_permalink(@blog.permalink)
+    end
+    
+    should "find by permalink when double slashes are present" do
+      assert_equal @blog, Spree::Blog.find_by_permalink("/" + @blog.permalink)
+    end
+    
+    should "find by permalink when trailing slashes are present" do
+      assert_equal @blog, Spree::Blog.find_by_permalink(@blog.permalink + "/")
+    end
+    
   end
 
 end

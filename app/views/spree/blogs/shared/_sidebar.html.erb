@@ -9,7 +9,7 @@
     <h3><%= t('.categories') %></h3>
     <ul>
       <% @post_categories.each do |category| %>
-        <li><%= link_to category.name, post_category_path(category.permalink) %></li>
+        <li><%= link_to category.name, post_category_path(@blog, category.permalink) %></li>
       <% end %>
     </ul>
   </div>
@@ -18,7 +18,7 @@
     <h3><%= t('.tags') %></h3>
     <ul class="tags">
       <% tag_cloud @tags, %w(neat cool rad awesome) do |tag, css_class| %>
-        <li><%= link_to tag.name, search_posts_path(tag.name), :class => css_class %></li>
+        <li><%= link_to tag.name, search_posts_path(@blog, tag.name), :class => css_class %></li>
       <% end %>
     </ul>
   </div>

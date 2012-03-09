@@ -2,11 +2,12 @@ class Spree::Blogs::PostsController < Spree::BaseController
 
   helper "spree/products"
   
+  before_filter :get_blog
   before_filter :get_sidebar, :only => [:index, :search, :show]
   
   def index
-    @posts_by_month = Spree::Post.live.limit(50).group_by { |post| post.posted_at.strftime("%B %Y") }
-    scope = Spree::Post.live
+    @posts_by_month = default_scope.limit(50).group_by { |post| post.posted_at.strftime("%B %Y") }
+    scope = default_scope
     if params[:year].present?
       year  = params[:year].to_i
       month = 1
@@ -32,28 +33,38 @@ class Spree::Blogs::PostsController < Spree::BaseController
   
   def search
 		query = params[:query].gsub(/%46/, '.')	
-		@posts = Spree::Post.live.tagged_with(query).page(params[:page]).per(Spree::Post.per_page)
+		@posts = default_scope.tagged_with(query).page(params[:page]).per(Spree::Post.per_page)
 		get_tags		
 		render :template => 'spree/blogs/posts/index'
 	end
 	
   def show
-    @post = Spree::Post.live.includes(:tags, :images, :products).find_by_path(params[:id]) rescue nil
+    @post = default_scope.includes(:tags, :images, :products).find_by_path(params[:id]) rescue nil
     return redirect_to archive_posts_path unless @post
   end
   
 	def archive
-		@posts = Spree::Post.live.all
+		@posts = default_scope.all
 	end
   
+private
+  
+  def default_scope
+    @blog.posts.live
+  end
+  
   def get_sidebar
-    @archive_posts = Spree::Post.live.limit(10)
+    @archive_posts = default_scope.limit(10)
     @post_categories = Spree::PostCategory.all
     get_tags
   end
   
   def get_tags
-    @tags = Spree::Post.live.tag_counts.order('count DESC').limit(25)
+    @tags = default_scope.tag_counts.order('count DESC').limit(25)
   end
 
+  def get_blog
+    @blog = Spree::Blog.find_by_permalink!(params[:blog_id])
+  end
+  
 end

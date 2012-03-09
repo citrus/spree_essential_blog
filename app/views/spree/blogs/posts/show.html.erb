@@ -23,7 +23,7 @@
   
   <div class="post-tags" data-hook="post-show-tags">
     <h5>Tagged:</h5>
-    <p><%= @post.tags.collect{|tag| link_to(tag.name, search_posts_path(tag.name)) }.join(", ").html_safe %></p>
+    <p><%= @post.tags.collect{|tag| link_to(tag.name, search_posts_path(@blog, tag.name)) }.join(", ").html_safe %></p>
   </div>
 
   <% unless @post.products.empty? %>

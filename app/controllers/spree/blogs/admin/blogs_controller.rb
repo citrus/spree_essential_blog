@@ -4,7 +4,11 @@ class Spree::Blogs::Admin::BlogsController < Spree::Admin::ResourceController
     redirect_to admin_blogs_path
   end
   
-  private
+private
+  
+  def find_resource
+    Spree::Blog.find_by_permalink!(params[:id])
+  end  
     
   def collection
     params[:search] ||= {}

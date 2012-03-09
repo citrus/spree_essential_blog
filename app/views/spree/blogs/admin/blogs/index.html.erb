@@ -13,7 +13,7 @@
   <tbody>
     <%- @collection.each do |blog|%>
     <tr id="<%= dom_id blog %>">
-      <td><%= link_to blog.name, object_url(blog) %></td>
+      <td><%= blog.name %></td>
       <td><%= blog.permalink %></td>
       <td>
       	<%= link_to_edit blog %> &nbsp;

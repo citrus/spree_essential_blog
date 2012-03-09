@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :spree_blog, :class => Spree::Blog do
     name "Blog"
-    permalink "blog"
+    permalink "/blog"
   end
   
   factory :spree_post, :class => Spree::Post do
