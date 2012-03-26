@@ -15,7 +15,7 @@ private
   
   def get_sidebar
     @archive_posts = default_scope.limit(10)
-    @post_categories = Spree::PostCategory.all
+    @post_categories = @blog.categories.order(:name).all
     get_tags
   end
   
