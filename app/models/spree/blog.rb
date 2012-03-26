@@ -1,7 +1,7 @@
 class Spree::Blog < ActiveRecord::Base
   
   has_many :posts, :class_name => "Spree::Post", :dependent => :destroy
-  has_many :categories, :through => :posts, :source => :post_categories
+  has_many :categories, :through => :posts, :source => :post_categories, :uniq => true
   
   validates :name, :presence => true
   validates :permalink, :uniqueness => true, :format => { :with => /^[a-z0-9\-\_\/]+$/i }, :length => { :within => 3..40 }
