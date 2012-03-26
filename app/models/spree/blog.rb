@@ -1,10 +1,13 @@
 class Spree::Blog < ActiveRecord::Base
   
+  RESERVED_PATHS = /(^\/*(admin|account|cart|checkout|content|login|pg|orders|products|s|session|signup|shipments|states|t|tax_categories|user)\/+)/
+  
   has_many :posts, :class_name => "Spree::Post", :dependent => :destroy
   has_many :categories, :through => :posts, :source => :post_categories, :uniq => true
   
   validates :name, :presence => true
   validates :permalink, :uniqueness => true, :format => { :with => /^[a-z0-9\-\_\/]+$/i }, :length => { :within => 3..40 }
+  validate  :permalink_availablity
   
   before_validation :normalize_permalink
   
@@ -25,6 +28,10 @@ class Spree::Blog < ActiveRecord::Base
   end
   
 private
+
+  def permalink_availablity
+    errors.add(:permalink, "is reserved, please try another.") if "/#{permalink}/" =~ RESERVED_PATHS
+  end
 
   def normalize_permalink
     self.permalink = (permalink.blank? ? name.to_s.parameterize : permalink).downcase.gsub(/(^[\/\-\_]+)|([\/\-\_]+$)/, "")
