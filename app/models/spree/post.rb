@@ -4,7 +4,7 @@ class Spree::Post < ActiveRecord::Base
 
   # for flash messages    
   alias_attribute :name, :title
-    
+  
   has_and_belongs_to_many :post_categories, :join_table => "spree_post_categories_posts"
   alias_attribute :categories, :post_categories
   

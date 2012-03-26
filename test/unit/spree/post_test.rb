@@ -12,6 +12,10 @@ class Spree::PostTest < ActiveSupport::TestCase
   should validate_presence_of(:body)
   
   should belong_to(:blog)
+  should have_and_belong_to_many(:post_categories)
+  should have_many(:post_products)
+  should have_many(:products).through(:post_products)
+  should have_many(:images)
   
   should "automatically set path" do
     @post = Factory.create(:spree_post, :title => "This should parameterize")

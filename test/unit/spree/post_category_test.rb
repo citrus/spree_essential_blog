@@ -8,6 +8,7 @@ class Spree::PostCategoryTest < ActiveSupport::TestCase
   
   subject { Spree::PostCategory.new }
   
+  should have_and_belong_to_many(:posts)
   should validate_presence_of(:name)
   
   should "automatically set permalink" do

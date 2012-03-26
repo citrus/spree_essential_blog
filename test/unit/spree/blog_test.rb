@@ -11,6 +11,8 @@ class Spree::BlogTest < ActiveSupport::TestCase
   end
   
   should have_many(:posts)
+  should have_many(:categories).through(:posts)
+  
   should validate_presence_of(:name)
   should ensure_length_of(:permalink).is_at_least(3).is_at_most(40)
                 
