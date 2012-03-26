@@ -21,7 +21,7 @@ class Spree::Post < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
 
-
+  scope :ordered, order("posted_at DESC")
   scope :future,  where("posted_at > ?", Time.now).order("posted_at ASC")
   scope :past,    where("posted_at <= ?", Time.now).ordered
   scope :live,    where(:live => true )

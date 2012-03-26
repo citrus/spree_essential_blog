@@ -70,6 +70,11 @@ class Spree::PostTest < ActiveSupport::TestCase
       assert !scope_includes(:past, @future_post)
     end
         
+    should "have ordered scope (posted_at DESC)" do
+      posts = Spree::Post.ordered.all
+      assert posts.index(@future_post) < posts.index(@past_post)
+    end
+    
   end
 
 end
