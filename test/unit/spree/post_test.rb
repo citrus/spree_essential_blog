@@ -42,4 +42,34 @@ class Spree::PostTest < ActiveSupport::TestCase
     assert_equal date, @post.posted_at
   end
   
+  context "#scopes" do
+  
+    setup do
+      @unpublished_post = Factory(:spree_post, :live => false)
+      @future_post = Factory(:spree_post, :posted_at => Time.now + 1.hour)
+      @past_post = Factory(:spree_post, :posted_at => Time.now - 1.hour)
+    end
+    
+    def scope_includes(scope, post)
+      Spree::Post.send(scope).all.map(&:id).include?(post.id)
+    end
+  
+    should "have live scope" do
+      assert scope_includes(:live, @future_post)
+      assert scope_includes(:live, @past_post)
+      assert !scope_includes(:live, @unpublished_post)
+    end
+    
+    should "have future scope" do
+      assert scope_includes(:future, @future_post)
+      assert !scope_includes(:future, @past_post)
+    end
+    
+    should "have past scope" do
+      assert scope_includes(:past, @past_post)
+      assert !scope_includes(:past, @future_post)
+    end
+        
+  end
+
 end

@@ -21,7 +21,11 @@ class Spree::Post < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
 
-  scope :live, where(:live => true ).order("posted_at DESC")
+
+  scope :future, where("posted_at > ?", Time.now).order("posted_at ASC")
+  scope :past,   where("posted_at <= ?", Time.now).order("posted_at DESC")
+  scope :live,   where(:live => true ).order("posted_at DESC")
+  
 
  	before_validation :create_path, :if => proc{ |record| record.title_changed? }
   
