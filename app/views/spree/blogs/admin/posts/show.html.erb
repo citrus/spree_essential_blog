@@ -1,6 +1,6 @@
 <%= render :partial => 'spree/blogs/admin/shared/post_tabs', :locals => {:current => "Post Details"} %>
-
-<h5><%= h @post.posted_at.strftime('%A %B %d, %Y at %I:%M%p').gsub(/\s0/, ' ') %></h5>
+<p>posted in <%= link_to @post.blog.name, edit_admin_blog_path(@post.blog) %></p>
+<h4><%= h @post.posted_at.strftime('%A %B %d, %Y at %I:%M%p').gsub(/\s0/, ' ') %></h4>
 <br/>
 
 <% for image in @post.images do %>
