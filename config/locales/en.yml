@@ -1,5 +1,8 @@
 en:
-
+  
+  # Spree Hax! Missing translation...
+  image_settings_description: "Image Settings"
+  
   activerecord:
     attributes:
       blog:

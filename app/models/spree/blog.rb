@@ -1,5 +1,7 @@
 class Spree::Blog < ActiveRecord::Base
   
+  attr_accessible :name, :permalink
+  
   RESERVED_PATHS = /(^\/*(admin|account|cart|checkout|content|login|pg|orders|products|s|session|signup|shipments|states|t|tax_categories|user)\/+)/
   
   has_many :posts, :class_name => "Spree::Post", :dependent => :destroy

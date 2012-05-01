@@ -1,5 +1,7 @@
 class Spree::PostImage < Spree::Asset
 
+  attr_accessible :alt, :attachment
+
   validates_attachment_presence :attachment
 
   has_attached_file :attachment,

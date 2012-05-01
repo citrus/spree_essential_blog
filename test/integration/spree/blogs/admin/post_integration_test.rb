@@ -21,7 +21,7 @@ class Spree::Blogs::Admin::PostIntegrationTest < SpreeEssentials::IntegrationCas
   should "get new post" do  
     visit spree.new_admin_post_path
     assert has_content?("New Post")
-    within "#new_spree_post" do
+    within "#new_post" do
       @labels.each do |f|
         assert has_field?(f)
       end
@@ -40,7 +40,7 @@ class Spree::Blogs::Admin::PostIntegrationTest < SpreeEssentials::IntegrationCas
   
   should "create a post" do
     visit spree.new_admin_post_path
-    within "#new_spree_post" do
+    within "#new_post" do
       @labels.each_with_index do |label, index|
       	fill_in label, :with => @values[index]      
       end
@@ -57,7 +57,7 @@ class Spree::Blogs::Admin::PostIntegrationTest < SpreeEssentials::IntegrationCas
     should "edit and update" do
       visit spree.edit_admin_post_path(@post)
       
-      within "#edit_spree_post_#{@post.id}" do
+      within "#edit_post_#{@post.id}" do
         @labels.each_with_index do |label, index|
           next if label == 'Posted At'
         	fill_in label, :with => @values[index].reverse      

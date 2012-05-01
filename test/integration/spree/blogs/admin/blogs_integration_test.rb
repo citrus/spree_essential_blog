@@ -27,7 +27,7 @@ class Spree::Blogs::Admin::BlogsIntegrationTest < SpreeEssentials::IntegrationCa
       assert_match /#{spree.new_admin_blog_path}$/, btn.attribute('href')
       assert_equal "New Blog", btn.text
       btn.click
-      within "#new_spree_blog" do
+      within "#new_blog" do
         fill_in "Name", :with => "Blog"
         fill_in "Permalink", :with => "blog"
       end
@@ -45,10 +45,10 @@ class Spree::Blogs::Admin::BlogsIntegrationTest < SpreeEssentials::IntegrationCa
     
     should "edit and update" do
       visit spree.admin_blogs_path
-      within "tr#spree_blog_#{@blog.id}" do
+      within "tr#blog_#{@blog.id}" do
         click_link "Edit"
       end
-      within "#edit_spree_blog_#{@blog.id}" do
+      within "#edit_blog_#{@blog.id}" do
         fill_in "Name", :with => "News"
         fill_in "Permalink", :with => "news"
       end
@@ -64,7 +64,7 @@ class Spree::Blogs::Admin::BlogsIntegrationTest < SpreeEssentials::IntegrationCa
     
     should "get destroyed" do
       visit spree.admin_blogs_path
-      within "tr#spree_blog_#{@blog.id}" do
+      within "tr#blog_#{@blog.id}" do
         find("a[href='#']").click
       end      
       assert find_by_id("popup_ok").click

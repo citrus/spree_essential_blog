@@ -5,8 +5,6 @@ require 'test_helper'
 
 class Spree::Blogs::Admin::PostCategoryIntegrationTest < SpreeEssentials::IntegrationCase
   
-  #include Blog::PostsHelper
-  
   def setup
     Spree::Post.destroy_all
     Spree::PostCategory.destroy_all
@@ -24,8 +22,8 @@ class Spree::Blogs::Admin::PostCategoryIntegrationTest < SpreeEssentials::Integr
   should "get the post categories index" do
     visit spree.admin_post_categories_path(@post)
     assert_seen "Categories", :within => ".sidebar.post-menu li.active"
-    assert_seen "Manage Categories", :within => ".edit_spree_post legend"
-    assert_seen @category.name, :within => "tr#spree_post_category_#{@category.id} td label"
+    assert_seen "Manage Categories", :within => ".edit_post legend"
+    assert_seen @category.name, :within => "tr#post_category_#{@category.id} td label"
     assert has_selector?("button[type=submit]")
     assert has_selector?("a#btn_new_category")
   end
@@ -39,7 +37,7 @@ class Spree::Blogs::Admin::PostCategoryIntegrationTest < SpreeEssentials::Integr
     @category = Spree::PostCategory.last
     assert_equal spree.admin_post_categories_path(@post), current_path
     assert_flash :notice, %(Post category "#{@category.name}" has been successfully created!)
-    assert_seen @category.name, :within => "tr#spree_post_category_#{@category.id} td label"
+    assert_seen @category.name, :within => "tr#post_category_#{@category.id} td label"
   end
   
   should "edit existing post category" do
@@ -51,12 +49,12 @@ class Spree::Blogs::Admin::PostCategoryIntegrationTest < SpreeEssentials::Integr
     click_button "Update"
     assert_equal spree.admin_post_categories_path(@post), current_path
     assert_flash :notice, %(Post category "Not just a Category" has been successfully updated!)
-    assert_seen "Not just a Category", :within => "tr#spree_post_category_#{@category.id} td label"    
+    assert_seen "Not just a Category", :within => "tr#post_category_#{@category.id} td label"    
   end
   
   should "destroy the post category" do
     visit spree.admin_post_categories_path(@post)
-    find("tr#spree_post_category_#{@category.id} td.options a[href='#']").click
+    find("tr#post_category_#{@category.id} td.options a[href='#']").click
     assert find_by_id("popup_ok").click
   end  
   

@@ -20,9 +20,9 @@ namespace :db do
       
       %w(Blog News).each do |name|
         
-        puts "Creating `#{name}`... "
+        print "Creating `#{name}`... "
         @blog = Spree::Blog.create(:name => name)
-        print "done."
+        puts "done."
         
         puts "Writing posts...\n"
         

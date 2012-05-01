@@ -40,15 +40,14 @@
 <% content_for :sidebar do %>
   <div class="box">
     <h3><%= t(:search) %></h3>
-    <% @post = Spree::Post.metasearch %>
-    <%= form_for [:admin, @post] do |f| %>
+    <%= search_form_for [:admin, @search] do |f| %>
       <p>
-        <%= f.label :blog_id_equals, t("activerecord.attributes.blog.model_name") %><br />
-        <%= f.select :blog_id_equals, Spree::Blog.to_options, :selected => (params[:search][:blog_id_equals] if params[:search]), :include_blank => true %>
+        <%= f.label :blog_id_eq, t("activerecord.attributes.blog.model_name") %><br />
+        <%= f.select :blog_id_eq, Spree::Blog.to_options, :selected => (params[:q][:blog_id_eq] if params[:q]), :include_blank => true %>
       </p>
       <p>
-        <%= f.label :title_like, t("activerecord.attributes.post.title") %><br />
-        <%= f.text_field :title_like, :size => 25 %>
+        <%= f.label :title_cont, t("activerecord.attributes.post.title") %><br />
+        <%= f.text_field :title_cont, :size => 25 %>
       </p>
       <p><%= button t("search") %></p>
     <% end %>
