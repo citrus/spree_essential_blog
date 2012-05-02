@@ -1,4 +1,5 @@
-"1.0.x"  => { :branch  => "master" }
+"1.1.x"  => { :branch  => "master" }
+"1.0.x"  => { :branch  => "1.0.x" }
 "0.70.x" => { :version => "0.1.0" }
 "0.60.x" => { :branch => "0.60.x" }
 "0.50.x" => { :branch => "0.60.x" }
