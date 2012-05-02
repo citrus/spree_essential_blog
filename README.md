@@ -18,8 +18,11 @@ Otherwise, follow these steps to get up and running with spree_essential_blog:
 First, add spree_essential_blog to your Gemfile... it hasn't been released to Rubygems yet so we'll grab it from git.
 
 ```ruby
+# Spree 1.1.x
+gem 'spree_essential_blog', :git => 'git://github.com/citrus/spree_essential_blog.git', :branch => 'master'
+
 # Spree 1.0.x
-gem 'spree_essential_blog', :git => 'git://github.com/citrus/spree_essential_blog.git'
+gem 'spree_essential_blog', :git => 'git://github.com/citrus/spree_essential_blog.git', :branch => '1.0.x'
 
 # Spree 0.70.x
 gem 'spree_essential_blog', '~> 0.1.0'
