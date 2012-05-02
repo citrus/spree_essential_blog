@@ -6,6 +6,10 @@ class Spree::PostTest < ActiveSupport::TestCase
     Spree::Post.destroy_all
   end
   
+  def scope_includes(scope, post)
+    Spree::Post.send(scope).all.map(&:id).include?(post.id)
+  end
+  
   subject { Spree::Post.new }
   
   should validate_presence_of(:title)
@@ -50,10 +54,6 @@ class Spree::PostTest < ActiveSupport::TestCase
       @past_post = Factory(:spree_post, :posted_at => Time.now - 1.hour)
     end
     
-    def scope_includes(scope, post)
-      Spree::Post.send(scope).all.map(&:id).include?(post.id)
-    end
-  
     should "have live scope" do
       assert scope_includes(:live, @future_post)
       assert scope_includes(:live, @past_post)
