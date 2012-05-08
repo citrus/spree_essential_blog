@@ -6,7 +6,10 @@
   <% end %>
   <br class="clear"/>
 
-  <%#= link_to(image_tag('blog/rss.png', :alt => t('spree.blogs.posts.index.rss')) + t('spree.blogs.posts.index.rss'), blog_posts_path(@blog, :format => 'rss'), :id => "posts-rss") %>
+  <%= link_to blog_posts_path(@blog, :format => 'rss'), :id => "posts-rss" do %>
+    <%= image_tag 'blog/rss.png', :alt => t('spree.blogs.posts.index.rss') %>
+    <%= t('spree.blogs.posts.index.rss') %>
+  <% end %>
   <%= paginate @posts %>
 
 </div>  
