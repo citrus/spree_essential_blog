@@ -1,4 +1,4 @@
-<% disqus_short_name = SpreeEssentialBlog::Config.preferred_disqus_shortname %>
+<% disqus_short_name = ::SpreeEssentialBlog::Config.preferred_disqus_shortname %>
 <% if !disqus_short_name.blank? %>
   <div class="post-comments">
     <h3><%= t('spree.blogs.comments') %></h3>
