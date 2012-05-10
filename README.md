@@ -162,6 +162,8 @@ Contributors
 * Denis Tierno ([@detierno](https://github.com/detierno))
 * David Verhasselt ([@dv](https://github.com/dv))
 * Kyle West ([@kylewest](https://github.com/kylewest))
+* Phil Pirozhkov ([pirj](https://github.com/pirj))
+
 
 If you'd like to help out feel free to fork and send me pull requests!
 
