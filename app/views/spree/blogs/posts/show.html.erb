@@ -22,7 +22,7 @@
   <br class="clear"/>
 
   <div class="post-tags" data-hook="post-show-tags">
-    <h5>Tagged:</h5>
+    <h5><%= t('.tagged') %>:</h5>
     <p><%= @post.tags.collect{|tag| link_to(tag.name, search_posts_path(@blog, tag.name)) }.join(", ").html_safe %></p>
   </div>
 

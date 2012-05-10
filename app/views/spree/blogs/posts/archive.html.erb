@@ -1,13 +1,13 @@
-<h1 data-hook="post-archive-title">Archive</h1>
+<h1 data-hook="post-archive-title"><%= t('.title') %></h1>
 
 <div class="archive" style="width: auto;" data-hook="post-archive">
-  
+
   <%= render 'spree/blogs/shared/archive', :posts => @posts %>
-  
-  <h4><%= t('.where_to_next') %></h4>  
+
+  <h4><%= t('.where_to_next') %></h4>
   <p class="action">
     <%= link_to t('.go_to_store'), products_path %> <%= t('or') %>
     <%= link_to t('.back_to_posts'), blog_posts_path(@blog) %>
   </p>
-  
+
 </div>

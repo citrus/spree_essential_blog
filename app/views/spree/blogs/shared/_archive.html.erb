@@ -4,10 +4,10 @@
     <% index = 0 %>
     <% posts_by_year.group_by(&:month).each do |month, posts_by_month| %>
       <div class="month<%= ' alt' if (index += 1) % 2 == 0 %>">
-        <h5 class="month"><%= link_to "#{Date::MONTHNAMES[month]} #{year}", post_date_path(@blog, year, month) %></h5>
+        <h5 class="month"><%= link_to l(Date.new(year, month), :format => :month_year, :use_standalone_month_names => true ), post_date_path(@blog, year, month) %></h5>
         <ul class="archive">
           <% posts_by_month.group_by(&:day).each do |day, posts_by_day| %>
-            <li>    
+            <li>
               <span class="day">
                 <%= link_to day, post_date_path(@blog, year, month, day) %>
               </span>
@@ -17,8 +17,8 @@
                 <% end %>
               </ul>
               <br class="clear"/>
-            </li>     
-          <% end %> 
+            </li>
+          <% end %>
         </ul>
       </div>
     <% end %>
