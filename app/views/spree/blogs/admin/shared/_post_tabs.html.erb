@@ -2,19 +2,19 @@
 
 <% content_for :sidebar do %>
 
-  <h3 class="name"><%= @post.title %><span class='sku'><%= (@post.posted_at || Time.now).strftime('%x') %></span></h3>
+  <h3 class="name"><%= @post.title %><span class='sku'><%= l (@post.posted_at || Time.now), :format => :date_only %></span></h3>
   <br clear="clear" />
 
   <ul class="sidebar post-menu">
     <li<%= ' class="active"'.html_safe if current == "Post Details" %>>
       <%= link_to t(".post_details"), edit_admin_post_url(@post) %>
-    </li>      
+    </li>
     <li<%= ' class="active"'.html_safe if current == "Images" %>>
       <%= link_to t("images"), admin_post_images_url(@post) %>
-    </li>     
+    </li>
     <li<%= ' class="active"'.html_safe if current == "Related Products" %>>
       <%= link_to t(".related_products"), admin_post_products_url(@post) %>
-    </li> 
+    </li>
     <li<%= ' class="active"'.html_safe if current == "Categories" %>>
       <%= link_to t(".post_categories"), admin_post_categories_url(@post) %>
     </li>

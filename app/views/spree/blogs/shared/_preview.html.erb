@@ -2,7 +2,7 @@
 
   <div class="post-title"  data-hook="post-title">
     <h2><%= link_to h(post.title), post_seo_path(@blog, post) %></h2>
-    <h5><%= date_full(post.posted_at) %></h5>
+    <h5><%= l post.posted_at, :format => :date_full %></h5>
   </div>
 
   <% if post.has_images? %>
@@ -10,9 +10,9 @@
   <% end %>
 
   <%= post.rendered_preview %>
-  
+
   <br class="clear" />
-  
+
   <p><%= link_to t('.read_more'), post_seo_path(@blog, post) %></p>
-  
+
 </div>

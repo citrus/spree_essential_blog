@@ -1,8 +1,8 @@
 en:
-  
+
   # Spree Hax! Missing translation...
   image_settings_description: "Image Settings"
-  
+
   activerecord:
     attributes:
       blog:
@@ -20,13 +20,13 @@ en:
         model_name: Category
         name: Name
         permalink: Permalink
-  
+
   spree:
 
     admin:
       subnav:
         posts: Posts
-      
+
     blogs:
       admin:
         blogs:
@@ -34,14 +34,14 @@ en:
             new_blog: New Blog
           index:
             new_blog: New Blog
-            
-            
+
+
         posts:
           new:
             new_post: New Post
         post_products:
           index:
-            add_related_product: Add Related Products      
+            add_related_product: Add Related Products
         post_categories:
           index:
             manage_categories: Manage Categories
@@ -49,7 +49,7 @@ en:
           new_category: New Category
         edit:
           edit_category: Edit Category
-                
+
         shared:
           post_tabs:
             post_details: Post Details
@@ -68,7 +68,7 @@ en:
         archive:
           where_to_next: Where to next?
           go_to_store: "Shop the Store"
-          back_to_posts: "Back to the blog"           
+          back_to_posts: "Back to the blog"
       settings:
         blogs: Manage Blogs
         explain_blogs: Add or Edit Blogs for posts.
@@ -76,13 +76,13 @@ en:
         explain_disqus: Configure Disqus Comments for Blog.
         disqus_shortname: Disqus Shortname
       shared:
-        sidebar: 
+        sidebar:
           recent_posts: Recent Posts
           categories: Categories
           archives: Archive
           view_archive: View Full Archive
-          tags: Tags        
-        preview: 
+          tags: Tags
+        preview:
           read_more: Read More
         post_tabs:
           editing_post: Editing Post
@@ -90,4 +90,11 @@ en:
           related_products: Related Products
           post_categories: Categories
       subnav:
-        posts: Blog Posts      
+        posts: Blog Posts
+
+  time:
+    formats:
+      date_time: "%x %X"
+      date_full: "%A %B %d, %Y"
+      detailed: "%A %B %d, %Y at %I:%M%p"
+      date_only: "%x"

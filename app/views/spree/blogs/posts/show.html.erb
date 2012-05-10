@@ -3,24 +3,24 @@
 <% end %>
 
 <div class="post" data-hook="post-show">
-  
+
   <div class="post-title" data-hook="post-show-title">
-    <h5><%= h @post.posted_at.strftime('%A %B %d, %Y').gsub(/\s0/, ' ') %></h5> 
+    <h5><%= h l(@post.posted_at, :format => :date_full).gsub(/\s0/, ' ') %></h5>
     <h1><%=h @post.title %></h1>
   </div>
-  
-  <% if @post.has_images? %>     
+
+  <% if @post.has_images? %>
     <div class="post-images" data-hook="post-show-image">
       <% @post.images.each_with_index do |image, index| %>
    	    <p><%= link_to image_tag(image.attachment.url(:medium), :alt => image.has_alt? ? image.alt : "#{@post.title} - Photo #{index + 1}"), image.attachment.url(:large), :id => "photo_#{index}" %></p>
  	    <% end %>
     </div>
-  <% end %>   
-    
-  <%= @post.rendered_body %>  
-  
+  <% end %>
+
+  <%= @post.rendered_body %>
+
   <br class="clear"/>
-  
+
   <div class="post-tags" data-hook="post-show-tags">
     <h5>Tagged:</h5>
     <p><%= @post.tags.collect{|tag| link_to(tag.name, search_posts_path(@blog, tag.name)) }.join(", ").html_safe %></p>
@@ -31,7 +31,7 @@
       <%= render 'spree/shared/products', :products => @post.products %>
     </div>
   <% end %>
-  
+
   <%= render "spree/blogs/shared/disqus_comments" %>
 
 </div>
