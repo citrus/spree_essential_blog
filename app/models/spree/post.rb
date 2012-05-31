@@ -1,6 +1,6 @@
 class Spree::Post < ActiveRecord::Base
   
-  attr_accessible :blog_id, :title, :teaser, :body, :posted_at, :author, :live, :tag_list, :post_category_ids
+  attr_accessible :blog_id, :title, :teaser, :body, :posted_at, :author, :live, :tag_list, :post_category_ids, :product_ids_string
   
   acts_as_taggable
 
@@ -64,7 +64,14 @@ class Spree::Post < ActiveRecord::Base
 		path
 	end
 	
-	
+  def product_ids_string
+    product_ids.join(',')
+  end
+
+  def product_ids_string=(s)
+    self.product_ids = s.to_s.split(',').map(&:strip)
+  end
+  
 	private
 	
     def render(val)

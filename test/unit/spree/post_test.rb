@@ -32,18 +32,42 @@ class Spree::PostTest < ActiveSupport::TestCase
     assert_equal "this-should-parameterize-2", @post2.path
   end
   
-  should "validate date time" do
-    @post = Factory.build(:spree_post)
-    @post.posted_at = "testing"
-    assert !@post.valid?
-  end
+  context "a new post" do
   
-  should "parse date time" do
-    date = DateTime.parse("2011/4/1 16:15")
-    @post = Factory.build(:spree_post)
-    @post.posted_at = "april 1 2011 - 4:15 pm"
-    assert @post.valid?
-    assert_equal date, @post.posted_at
+    setup do
+      @post = Factory.build(:spree_post)
+    end
+  
+    should "validate date time" do
+      @post.posted_at = "testing"
+      assert !@post.valid?
+    end
+    
+    should "parse date time" do
+      date = DateTime.parse("2011/4/1 16:15")
+      @post.posted_at = "april 1 2011 - 4:15 pm"
+      assert @post.valid?
+      assert_equal date, @post.posted_at
+    end
+        
+    context "with products" do
+      
+      setup do
+        @product_ids = [ Factory.create(:product), Factory.create(:product) ].map(&:id)
+      end
+      
+      should "set product ids string" do
+        @post.product_ids_string = @product_ids.join(",")
+        assert_equal @product_ids, @post.product_ids
+      end
+      
+      should "get product ids string" do
+        @post.product_ids = @product_ids
+        assert_equal @product_ids.join(","), @post.product_ids_string
+      end
+    
+    end
+    
   end
   
   context "#scopes" do
