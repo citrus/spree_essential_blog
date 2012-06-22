@@ -104,3 +104,9 @@ en:
   date:
     formats:
       month_year: "%B %Y"
+
+  autodate:
+    date_format: "dddd, MMMM d, yyyy h:mm:ss tt"
+    empty_string: "Type a date above"
+    input_empty: "Enter any date here.."
+    input_invalid: "Please enter a valid date."

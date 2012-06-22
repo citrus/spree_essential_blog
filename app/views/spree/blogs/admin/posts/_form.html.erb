@@ -12,7 +12,7 @@
 
 <%= form.field_container :posted_at do %>
   <%= form.label :posted_at, t("activerecord.attributes.post.posted_at") %><br />
-  <%= form.text_field :posted_at, :class => 'text', :value => ((l @post.posted_at, :format => :long) unless @post.posted_at.nil?) %><br />
+  <%= form.text_field :posted_at, :class => 'text', :value => (@post.posted_at unless @post.posted_at.nil?) %><br />
   <%= error_message_on :post, :posted_at %>
 <% end %>
 
@@ -36,7 +36,12 @@
   <script type="text/javascript">
   //<![CDATA[
     $(document).ready(function() {
-      $('#post_posted_at').autodate();
+      $('#post_posted_at').autodate({
+        date_format: "<%=t 'autodate.date_format' %>",
+        empty_string: "<%=t 'autodate.empty_string' %>",
+        input_empty: "<%=t 'autodate.input_empty' %>",
+        input_invalid: "<%=t 'autodate.input_invalid' %>"
+      });
       $('#post_body').markItUp(markdownSettings);
     });
   //]]>
