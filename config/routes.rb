@@ -4,7 +4,7 @@ Spree::Core::Engine.routes.append do
 
     namespace :admin do
       
-      resources :blogs, :constraints => { :id => /[a-z0-9\-\_\/]{3,}/ }
+      resources :blogs, :constraints => { :id => /[a-z0-9\-\_\/]{0,}/ }
       
       resources :posts do 
         resources :images,   :controller => "post_images" do
@@ -20,7 +20,7 @@ Spree::Core::Engine.routes.append do
       
     end
      
-    constraints :blog_id => /([a-z0-9\-\_\/]{3,})/ do
+    constraints :blog_id => /([a-z0-9\-\_\/]{0,})/ do
       
       constraints(
         :year  => /\d{4}/,

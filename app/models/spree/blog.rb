@@ -18,7 +18,11 @@ class Spree::Blog < ActiveRecord::Base
   end
 
   def self.find_by_permalink(path)
-    find_by_permalink!(path) rescue ActiveRecord::RecordNotFound
+    if path.length < 3
+      raise ActiveRecord::RecordNotFound # pemalink length is at least 3
+    else
+      find_by_permalink!(path) rescue ActiveRecord::RecordNotFound
+    end
   end
   
   def self.to_options
