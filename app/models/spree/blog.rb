@@ -32,7 +32,11 @@ class Spree::Blog < ActiveRecord::Base
   def to_param
     self.permalink.gsub(/(^\/+)|(\/+$)/, "")
   end
-  
+
+  def matches?(_path)
+    ( _path.delete("/").match(permalink))
+  end
+
 private
 
   def permalink_availablity

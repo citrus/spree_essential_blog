@@ -1,0 +1,5 @@
+<% unless @blogs.blank? %>
+  <% @blogs.each do |blog| %>
+    <%= content_tag(:li, link_to(blog.name, blog_posts_path(blog)), :class => blog.matches?(request.path)  ? "active" : nil) %>
+  <% end %>
+<% end %>
