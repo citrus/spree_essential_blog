@@ -1,13 +1,13 @@
 <div class='toolbar'>
   <ul class='actions'>
     <li>
-      <p><%= button_link_to "New Post", new_object_url, :icon => 'add' %></p>
+      <p><%= button_link_to t("spree.blogs.admin.posts.new.new_post"), new_object_url, :icon => 'add' %></p>
     </li>
   </ul>
   <br class='clear' />
 </div>
 
-<h1>Listing Posts</h1>
+<h1><%=t "spree.blogs.admin.posts.index.listing" %></h1>
 
 <table class="index">
   <thead>
@@ -25,7 +25,7 @@
       <td><%= link_to post.title, object_url(post) %></td>
       <td><%= post.blog.nil? ? "n/a" : link_to(post.blog.name, admin_posts_path(:search => { :blog_id_equals => post.blog_id })) %></td>
       <td><%= l post.posted_at, :format => :date_time %></td>
-      <td><%= post.live ? 'Yes' : 'No' %></td>
+      <td><%= post.live ? t(:yes) : t(:no) %></td>
       <td>
       	<%= link_to_edit post %> &nbsp;
       	<%= link_to_delete post %>
