@@ -20,7 +20,7 @@ Spree::Core::Engine.routes.append do
       
     end
      
-    constraints :blog_id => /([a-z0-9\-\_\/]{0,})/ do
+    constraints :blog_id => /(.*)/ do
       
       constraints(
         :year  => /\d{4}/,
