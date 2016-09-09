@@ -24,7 +24,11 @@ private
   end
 
   def get_blog
-    @blog = Spree::Blog.find_by_permalink!(params[:blog_id])
+    begin
+      @blog = Spree::Blog.find_by_permalink!(params[:blog_id])
+    rescue ActiveRecord::RecordNotFound => e
+      render_404(e)
+    end
   end
   
 end

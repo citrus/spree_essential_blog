@@ -24,8 +24,8 @@ class Spree::Post < ActiveRecord::Base
   @@per_page = 10
 
   scope :ordered, order("posted_at DESC")
-  scope :future,  where("posted_at > ?", Time.now).order("posted_at ASC")
-  scope :past,    where("posted_at <= ?", Time.now).ordered
+  scope :future,  lambda { where("posted_at > ?", Time.now).order("posted_at ASC") }
+  scope :past,    lambda { where("posted_at <= ?", Time.now).ordered }
   scope :live,    where(:live => true )
 
  	before_validation :create_path, :if => proc{ |record| record.title_changed? }

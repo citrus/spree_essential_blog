@@ -41,6 +41,7 @@ class Spree::Blogs::PostsController < Spree::BaseController
 	
   def show
     @post = default_scope.includes(:tags, :images, :products).find_by_path(params[:id]) rescue nil
+    @title = @post.title if @post && @post.title.present?
     return redirect_to archive_posts_path unless @post
   end
   

@@ -11,3 +11,9 @@ def setup_action_controller_behaviour(controller_class)
   @routes = Spree::Core::Engine.routes
   @controller = controller_class.new
 end
+
+def with_driver(driver)
+  Capybara.current_driver = driver
+  yield
+  Capybara.use_default_driver
+end
